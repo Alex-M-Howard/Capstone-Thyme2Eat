@@ -15,13 +15,13 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'dinnerthyme.postgresql')
     )
 
-    if test_config is None:
-        # Load the instance config file when not testing
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # Load the test config if passed in
-        app.config.from_mapping(test_config)
-
+    # Config Setup
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///thyme2eat"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    
+    # TODO Create environment variable for secret key when Done
+    app.config["SECRET_KEY"] = "SECRET"
+    
     # Create instance folder if Not exist
     try:
         os.makedirs(app.instance_path)
