@@ -9,9 +9,8 @@
   Diets      : Text
 """
 
-# TODO MOVE THESE TO ANOTHER FILE
-from flask_sqlalchemy import SQLAlchemy 
-db = SQLAlchemy()  
+from ..db import db
+
 
 class Meal(db.Model):
     """Saved meal in DB"""

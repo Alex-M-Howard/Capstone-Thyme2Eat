@@ -6,12 +6,10 @@
   Password   : Text -> Bcrypt to hash
 """
 
-from flask_bcrypt import Bcrypt
-from flask_sqlalchemy import SQLAlchemy
+from ..db import db
 
-#TODO MOVE THESE TO ANOTHER FILE
-bcrypt = Bcrypt()
-db = SQLAlchemy()   
+#bcrypt = Bcrypt()
+
 
 class User(db.Model):
     """User in the system."""
