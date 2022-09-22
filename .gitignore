@@ -1,8 +1,7 @@
 venv/
 
 *.pyc
-__pycache__/
-__pycahce__
+
 instance/
 
 .pytest_cache/
