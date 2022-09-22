@@ -2,7 +2,7 @@ venv/
 
 *.pyc
 __pycache__/
-
+__pycahce__
 instance/
 
 .pytest_cache/
@@ -12,5 +12,6 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+Thyme2Eat/__pycache__/__init__.cpython-310.pyc
 Thyme2Eat/__pycache__/__init__.cpython-310.pyc
 Thyme2Eat/__pycache__/__init__.cpython-310.pyc
