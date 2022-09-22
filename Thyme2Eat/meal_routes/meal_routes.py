@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, request
+
+from .. import API_KEY
 # Use url_for for redirects, render_templates otherwise
 
 app_meal = Blueprint(
