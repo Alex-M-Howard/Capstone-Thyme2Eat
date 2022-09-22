@@ -1,18 +1,18 @@
-""" 
-        USER MODEL
-  ID         : Primary Key
-  Username   : Text
-  Email      : Text
-  Password   : Text -> Bcrypt to hash
-"""
-
 from ..db import db
 
-#bcrypt = Bcrypt()
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt()
 
 
 class User(db.Model):
-    """User in the system."""
+    """ 
+            USER MODEL
+    ID         : Primary Key
+    Username   : Text
+    Email      : Text
+    Password   : Text -> Bcrypt to hash
+    """
+    
 
     __tablename__ = 'users'
 

@@ -1,19 +1,17 @@
-""" 
-        MEAL MODEL
-  ID         : Primary Key
-  Title      : Text
-  Summary    : Text
-  Image URL  : Text 
-  Servings   : Integer
-  Time       : Float
-  Diets      : Text
-"""
-
 from ..db import db
 
 
 class Meal(db.Model):
-    """Saved meal in DB"""
+    """ 
+            MEAL MODEL
+    ID         : Primary Key
+    Title      : Text
+    Summary    : Text
+    Image URL  : Text 
+    Servings   : Integer
+    Time       : Float
+    Diets      : Text
+    """
 
     __tablename__ = 'meals'
 
@@ -41,7 +39,6 @@ class Meal(db.Model):
         nullable=False,
     )
 
-    # TODO CHECK API RETURN FOR FLOAT/INT
     time = db.Column(
         db.Float,
         nullable=False,
