@@ -4,7 +4,7 @@
 import os
 
 from flask import Flask
-from .routes import routes
+from .db import connect_to_db
 
 def create_app(test_config=None):
     # Create Flask app and configure app
@@ -22,12 +22,7 @@ def create_app(test_config=None):
     # TODO Create environment variable for secret key when Done
     app.config["SECRET_KEY"] = "SECRET"
     
-    # Create instance folder if Not exist
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
-
+    connect_to_db(app)
     # Link app to routes
     app.register_blueprint(routes)
     
