@@ -1,12 +1,13 @@
 from flask import Blueprint, render_template, flash, redirect, request
+# Use url_for for redirects, render_templates otherwise
 
-routes = Blueprint(
-    'routes',
+app_user = Blueprint(
+    'route',
     __name__,
     static_folder='static',
     template_folder='templates'
     )
 
-@routes.route('/')
+@app_user.route('/')
 def home():
     return render_template('/testing/test.html')
