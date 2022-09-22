@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, flash, redirect, request
 
-from .. import API_KEY
+SPOONTACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'
 # Use url_for for redirects, render_templates otherwise
 
 app_meal = Blueprint(
-    'route',
+    'app_meal',
     __name__,
     static_folder='static',
     template_folder='templates'

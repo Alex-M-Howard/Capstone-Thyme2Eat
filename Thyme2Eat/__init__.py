@@ -3,15 +3,14 @@ import os
 
 from flask import Flask
 
-from .user_routes.user_routes import app_user
-#from .meal_routes.meal_routes import app_meal -> Not implemented yet
-
+from .routes.user_routes.user_routes import app_user
+from .routes.meal_routes.meal_routes import app_meal 
 from .models.meal_model import Meal
 from .models.user_model import User
 
 from .db import connect_to_db, db
 
-API_KEY = '25bf790109054f9387a17986d94ebcfb'
+
 
 def create_app():
     # Create Flask app
@@ -29,5 +28,8 @@ def create_app():
     
     # Register routing blueprints -> https://realpython.com/flask-blueprint/
     app.register_blueprint(app_user)
+    app.register_blueprint(app_meal)
     
     return app
+
+
