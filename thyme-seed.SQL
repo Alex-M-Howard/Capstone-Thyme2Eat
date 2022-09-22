@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS thyme2eat;
+CREATE DATABASE thyme2eat;
