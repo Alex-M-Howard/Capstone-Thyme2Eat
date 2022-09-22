@@ -10,4 +10,4 @@ app_user = Blueprint(
 
 @app_user.route('/')
 def home():
-    return render_template('/testing/test.html')
+    return render_template('/home.html')
