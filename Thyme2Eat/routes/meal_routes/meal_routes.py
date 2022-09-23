@@ -1,19 +1,60 @@
 from flask import Blueprint, render_template, flash, redirect, request
 
-SPOONTACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'
+import requests
 # Use url_for for redirects, render_templates otherwise
+
+SPOONACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'
+
+DIETS = ['Gluten Free', 'Ketogenic', 'Vegetarian', 'Vegan', 'Pescetarian', 'Paleo']
+
+FOOD_JOKES_API = 'https://api.spoonacular.com/food/jokes/random'
+RANDOM_MEAL_API = 'https://api.spoonacular.com/recipes/random'
+COMPLEX_SEARCH_API = 'https://api.spoonacular.com/recipes/complexSearch'
 
 app_meal = Blueprint(
     'app_meal',
     __name__,
     static_folder='static',
+    template_folder='templates',
     url_prefix='/meals'
     )
+
+
+
 
 @app_meal.route('/')
 def home():
     return render_template('/home.html')
 
+
+@app_meal.route('/random', methods=["GET", "POST"])
+def get_random_meal():
+    """ Retrieve and show a random meal with nutrition, ingredients, and directions """
+    if request.method=="POST":
+        r = request.form
+        
+        params = {
+            "apiKey": SPOONACULAR_API_KEY,
+            "diet": r["diet"],
+            "intolerances": r["intolerances"],
+            "type": r["type"],
+            "number": 5,
+            "sort": "random",
+            "instructionsRequired": "true", 
+        }
+        
+        response = requests.get(RANDOM_MEAL_API, params)
+        meals = response.json()
+                 
+        return render_template('random_meal.html', meals=meals['recipes'])
+    else:
+        return render_template('random_meal.html')
+    
+    
+    
+    
+    
+    
 """
 GET https://api.spoonacular.com/recipes/complexSearch   -> Search Recipes
 GET https://api.spoonacular.com/recipes/{id}/similar -> Get similar recipes
@@ -24,10 +65,7 @@ GET https://api.spoonacular.com/recipes/{id}/ingredientWidget.json -> search by 
 GET https://api.spoonacular.com/recipes/{id}/nutritionWidget.json  -> Nutrition by ID
 GET https://api.spoonacular.com/recipes/{id}/card -> recipe card
 
-GET https://api.spoonacular.com/food/jokes/random -> random food joke
-
 GET https://api.spoonacular.com/mealplanner/generate
-
 GET https://api.spoonacular.com/mealplanner/{username}/shopping-list
 
 
