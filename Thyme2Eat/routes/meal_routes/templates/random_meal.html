@@ -6,17 +6,18 @@
 <h1 class="text-center">What's on the menu?</h1>
 
 <div class="grid-container">
-<div class="grid-x grid-padding-x small-up-2 medium-up-3">
+<div class="grid-x grid-padding-x small-up-2 medium-up-3 large-up-4 ">
 
   
   {% if meals %}
     {% for meal in meals %}
-      <div class="cell small-4"> 
+      <div class="cell small-4 align-self-center"> 
         <div class="card">
           
             <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><img src="{{meal.image}}" alt="{{meal.title}} image"></a>
           
-          <div class="card-section">
+
+          <div class="card-divider">
             <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><p style="font-size: 1rem;">{{meal.title}}</p></a>
           </div>
         </div>
