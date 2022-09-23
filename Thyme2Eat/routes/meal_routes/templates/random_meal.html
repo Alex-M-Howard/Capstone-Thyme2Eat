@@ -3,51 +3,87 @@
 {% block title %}Thyme2Eat{% endblock %}
 
 {% block content %}
-<h1>What's on the menu?</h1>
+<h1 class="text-center">What's on the menu?</h1>
 
-{% if meals %}
-  {% for meal in meals %}
-    <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><img src="{{meal.image}}" alt="{{meal.title}} image"></a>
-    <li><a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}">{{meal.title}}</a></li>
-  {% endfor %}
-{% endif %}
+<div class="grid-container">
+<div class="grid-x grid-padding-x small-up-2 medium-up-3">
+
+  
+  {% if meals %}
+    {% for meal in meals %}
+      <div class="cell small-4"> 
+        <div class="card">
+          
+            <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><img src="{{meal.image}}" alt="{{meal.title}} image"></a>
+          
+          <div class="card-section">
+            <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><p style="font-size: 1rem;">{{meal.title}}</p></a>
+          </div>
+        </div>
+      </div>
+
+
+    {% endfor %}
+  {% endif %}
+  </div>
+
+</div>
 
 <form method="POST">
-  <label for="diet">Diet</label>
-  <select name="diet" id="diet">
-    <option value="" selected>Any</option>
-    <option value="vegetarian">Vegetarian</option>
-    <option value="vegan">Vegan</option>
-    <option value="ketogenic">Keto</option>
-    <option value="glutenFree">Gluten Free</option>
-    <option value="pescetarian">Pescetarian</option>
-    <option value="paleo">Paleo</option>
-  </select>
+  <div class="grid-x grid-padding-x small-up-1 medium-up-5 large-up-5">
+    <div class="cell small-3 medium-1"></div>
+    <div class="cell small-2 medium-3">
 
-  <label for="type">Meal Type</label>
-  <select name="type" id="type">
-    <option value="" selected>Any</option>
-    <option value="breakfast">Breakfast</option>
-    <option value="brunch">Brunch</option>
-    <option value="lunch">Lunch</option>
-    <option value="dinner">Dinner</option>
-    <option value="Snack">Snack</option>
-  </select>
+      <label for="diet">Diet</label>
+      <select name="diet" id="diet">
+        <option value="" selected>Any</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="vegan">Vegan</option>
+        <option value="ketogenic">Keto</option>
+        <option value="glutenFree">Gluten Free</option>
+        <option value="pescetarian">Pescetarian</option>
+        <option value="paleo">Paleo</option>
+      </select>
+    </div>
+  
+    <div class="cell small-2 medium-3">
+      <label for="type">Meal Type</label>
+      <select name="type" id="type">
+        <option value="" selected>Any</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="brunch">Brunch</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="Snack">Snack</option>
+      </select>
+    </div>
 
-  <label for="intolerances">Avoid</label>
-  <select name="intolerances" id="intolerances">
-    <option value="" selected>None</option>
-    <option value="dairyFree">Dairy</option>
-    <option value="egg">Egg</option>
-    <option value="peanut">Peanut</option>
-    <option value="seafood">Seafood</option>
-    <option value="shellfish">Shellfish</option>
-    <option value="soy">Soy</option>
-    <option value="Wheat">Wheat</option>
-  </select>
+    <div class="cell small-2 medium-3">
+      <label for="intolerances">Avoid</label>
+      <select name="intolerances" id="intolerances">
+        <option value="" selected>None</option>
+        <option value="dairyFree">Dairy</option>
+        <option value="egg">Egg</option>
+        <option value="peanut">Peanut</option>
+        <option value="seafood">Seafood</option>
+        <option value="shellfish">Shellfish</option>
+        <option value="soy">Soy</option>
+        <option value="Wheat">Wheat</option>
+      </select>
+    </div>
+    <div class="cell small-3 medium-1"></div>
+  </div>
 
-  <button>Search</button>
+
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell"></div>
+    <div class="cell small-12 medium-4 large-2">
+      <button class="button expanded">Search</button>
+    </div>
+    <div class="cell"></div>
+  </div>
+
 </form>
 
-
+</div>
 {% endblock %}
