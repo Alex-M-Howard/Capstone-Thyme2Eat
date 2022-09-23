@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, request, url_for
 
 import requests
-# Use url_for for redirects, render_templates otherwise
 
 SPOONACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'
 RECIPES_API = 'https://api.spoonacular.com/recipes'
@@ -48,7 +47,7 @@ def get_random_meal():
             "sort": "random",
             "instructionsRequired": "true", 
         }
-        
+
         response = requests.get(f"{RECIPES_API}/{COMPLEX_SEARCH}", params)
         meals = response.json()
                  
@@ -57,37 +56,17 @@ def get_random_meal():
         return render_template('random_meal.html')
     
     
-@app_meal.route(f'/recipe/<int:meal_id>', methods=["GET", "POST"])
+@app_meal.route(f'/recipe/<int:meal_id>', methods=["GET"])
 def show_recipe(meal_id):
-    print('welcome to here')
+    """Show a recipe with instructions and nutrition facts"""
     
-    return redirect(url_for('app_meal.home'))
+    params = {
+        "apiKey": SPOONACULAR_API_KEY,
+        "id": meal_id
+    }
+
+    recipe = requests.get(f"{RECIPES_API}/{meal_id}/{INFO}", params)
+    nutrition = requests.get(f"{RECIPES_API}/{meal_id}/{NUTRITION_LABEL}", params)
     
+    return render_template('show_recipe.html', recipe=recipe.json(), nutrition=nutrition.url)
     
-    
-"""
-
-GET https://api.spoonacular.com/recipes/{id}/similar -> Get similar recipes
-GET https://api.spoonacular.com/recipes/autocomplete -> Autocomplete search
-GET https://api.spoonacular.com/recipes/{id}/information -> Get recipe info
-GET https://api.spoonacular.com/recipes/findByIngredients -> Search by ingredients
-GET https://api.spoonacular.com/recipes/{id}/ingredientWidget.json -> search by ingredient ID
-GET https://api.spoonacular.com/recipes/{id}/nutritionWidget.json  -> Nutrition by ID
-GET https://api.spoonacular.com/recipes/{id}/card -> recipe card
-
-GET https://api.spoonacular.com/mealplanner/generate
-GET https://api.spoonacular.com/mealplanner/{username}/shopping-list
-
-
-Connect User
-In order to call user-specific endpoints, you need to connect your app's users to spoonacular users.
-
-Just call this endpoint with your user's information and you will get back a username and hash that you must save on your side. In future requests that you make on this user's behalf you simply pass their username and hash alongside your API key.
-
-Read more about working with the meal planner.
-
-POST https://api.spoonacular.com/users/connect
-
-
-
-"""
