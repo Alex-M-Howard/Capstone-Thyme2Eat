@@ -4,12 +4,20 @@ import requests
 # Use url_for for redirects, render_templates otherwise
 
 SPOONACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'
+RECIPES_API = 'https://api.spoonacular.com/recipes'
 
-DIETS = ['Gluten Free', 'Ketogenic', 'Vegetarian', 'Vegan', 'Pescetarian', 'Paleo']
+# Searching the API
+COMPLEX_SEARCH = 'complexSearch'
+AUTOCOMPLETE_SEARCH = 'autocomplete'
+FIND_BY_INGREDIENTS = 'findByIngredients'
 
-FOOD_JOKES_API = 'https://api.spoonacular.com/food/jokes/random'
-RANDOM_MEAL_API = 'https://api.spoonacular.com/recipes/random'
-COMPLEX_SEARCH_API = 'https://api.spoonacular.com/recipes/complexSearch'
+# Recipe endpoints
+INFO = 'information'
+SIMILAR = 'similar'
+NUTRITION_LABEL = 'nutritionLabel.png'
+
+# Miscellaneous API endpoints
+FOOD_JOKES_API = 'food/jokes/random'
 
 app_meal = Blueprint(
     'app_meal',
