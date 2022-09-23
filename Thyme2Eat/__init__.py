@@ -1,7 +1,7 @@
 # TO RUN APP -> flask --app Thyme2Eat --debug run
 import os
 
-from flask import Flask
+from flask import Flask, redirect, url_for
 
 from .routes.user_routes.user_routes import app_user
 from .routes.meal_routes.meal_routes import app_meal 
@@ -29,6 +29,12 @@ def create_app():
     # Register routing blueprints -> https://realpython.com/flask-blueprint/
     app.register_blueprint(app_user)
     app.register_blueprint(app_meal)
+    
+    @app.route('/')
+    def home():
+        """ If user is logged in, go to user hub, otherwise show Sign Up/Login Pages"""
+        
+        return redirect(url_for('app_user.home'))
     
     return app
 
