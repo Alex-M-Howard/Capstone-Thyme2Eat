@@ -44,7 +44,7 @@ def get_random_meal():
             "diet": r["diet"],
             "intolerances": r["intolerances"],
             "type": r["type"],
-            "number": 6,
+            "number": 24,
             "sort": "random",
             "instructionsRequired": "true", 
         }
