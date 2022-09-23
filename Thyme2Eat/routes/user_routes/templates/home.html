@@ -3,8 +3,15 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
+<div class="container">
+<div class="grid-x grid-padding-x flex-dir-column">
+    <div class="cell-2"></div>
+    <div class="cell-8">
+    <img src="https://i.ibb.co/JrFqcgN/logo.png" alt="Thyme2Eat Logo" id="logo">
+    </div>
+    <div class="cell-2"></div>
+</div>
+    <h5 class="text-center"><i>{{joke.text}}</i></h3>
 
-<img style="width: auto; height: 75vh;" src="https://i.ibb.co/JrFqcgN/logo.png" alt="Thyme2Eat Logo">
-<a href="/meals/random"><button class="button ">Random Meal</button></a>
 
 {% endblock %}
