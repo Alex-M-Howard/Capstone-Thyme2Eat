@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, request
+from flask import Blueprint, render_template, flash, redirect, request, url_for
 
 import requests
 # Use url_for for redirects, render_templates otherwise
@@ -20,8 +20,6 @@ app_meal = Blueprint(
     )
 
 
-
-
 @app_meal.route('/')
 def home():
     return render_template('/home.html')
@@ -38,25 +36,30 @@ def get_random_meal():
             "diet": r["diet"],
             "intolerances": r["intolerances"],
             "type": r["type"],
-            "number": 5,
+            "number": 6,
             "sort": "random",
             "instructionsRequired": "true", 
         }
         
-        response = requests.get(RANDOM_MEAL_API, params)
+
+        response = requests.get(COMPLEX_SEARCH_API, params)
         meals = response.json()
                  
-        return render_template('random_meal.html', meals=meals['recipes'])
+        return render_template('random_meal.html', meals=meals['results'])
     else:
         return render_template('random_meal.html')
     
     
+@app_meal.route(f'/recipe/<int:meal_id>', methods=["GET", "POST"])
+def show_recipe(meal_id):
+    print('welcome to here')
     
+    return redirect(url_for('app_meal.home'))
     
     
     
 """
-GET https://api.spoonacular.com/recipes/complexSearch   -> Search Recipes
+
 GET https://api.spoonacular.com/recipes/{id}/similar -> Get similar recipes
 GET https://api.spoonacular.com/recipes/autocomplete -> Autocomplete search
 GET https://api.spoonacular.com/recipes/{id}/information -> Get recipe info
