@@ -18,6 +18,7 @@ NUTRITION_LABEL = 'nutritionLabel.png'
 # Miscellaneous API endpoints
 FOOD_JOKES_API = 'food/jokes/random'
 
+# Create blueprint and custom routes
 app_meal = Blueprint(
     'app_meal',
     __name__,
@@ -67,6 +68,6 @@ def show_recipe(meal_id):
 
     recipe = requests.get(f"{RECIPES_API}/{meal_id}/{INFO}", params)
     nutrition = requests.get(f"{RECIPES_API}/{meal_id}/{NUTRITION_LABEL}", params)
-    
+
     return render_template('show_recipe.html', recipe=recipe.json(), nutrition=nutrition.url)
     
