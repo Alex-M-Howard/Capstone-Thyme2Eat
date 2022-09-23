@@ -49,8 +49,7 @@ def get_random_meal():
             "instructionsRequired": "true", 
         }
         
-
-        response = requests.get(COMPLEX_SEARCH_API, params)
+        response = requests.get(f"{RECIPES_API}/{COMPLEX_SEARCH}", params)
         meals = response.json()
                  
         return render_template('random_meal.html', meals=meals['results'])
