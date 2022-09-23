@@ -1,5 +1,8 @@
 from flask import Blueprint, render_template, flash, redirect, request
-# Use url_for for redirects, render_templates otherwise
+
+from ...models.joke_model import Joke
+
+import random
 
 app_user = Blueprint(
     'app_user',
@@ -11,4 +14,7 @@ app_user = Blueprint(
 
 @app_user.route('/')
 def home():
-    return render_template('/home.html')
+    
+    jokes = Joke.query.all()
+    
+    return render_template('/home.html', joke=random.choice(jokes))
