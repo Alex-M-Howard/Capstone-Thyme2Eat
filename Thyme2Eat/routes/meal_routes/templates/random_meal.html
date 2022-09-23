@@ -7,8 +7,8 @@
 
 {% if meals %}
   {% for meal in meals %}
-    <a href="/meals/{{meal.id}}"><img src="{{meal.image}}" alt="{{meal.title}} image"></a>
-    <li><a href="/meals/{{meal.id}}">{{meal.title}}</a></li>
+    <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><img src="{{meal.image}}" alt="{{meal.title}} image"></a>
+    <li><a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}">{{meal.title}}</a></li>
   {% endfor %}
 {% endif %}
 
