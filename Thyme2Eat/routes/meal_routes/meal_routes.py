@@ -7,7 +7,7 @@ app_meal = Blueprint(
     'app_meal',
     __name__,
     static_folder='static',
-    template_folder='templates'
+    url_prefix='/meals'
     )
 
 @app_meal.route('/')
