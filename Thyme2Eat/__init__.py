@@ -5,11 +5,14 @@ from flask import Flask, redirect, url_for
 
 from .routes.user_routes.user_routes import app_user
 from .routes.meal_routes.meal_routes import app_meal 
+
 from .models.meal_model import Meal
 from .models.user_model import User
+from .models.joke_model import Joke
 
 from .db import connect_to_db, db
 
+from .thyme_seed import seed
 
 
 def create_app():
@@ -25,6 +28,8 @@ def create_app():
     
     # Connect to DB
     connect_to_db(app)
+    seed()
+    
     
     # Register routing blueprints -> https://realpython.com/flask-blueprint/
     app.register_blueprint(app_user)
