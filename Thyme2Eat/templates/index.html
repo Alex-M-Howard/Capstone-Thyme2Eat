@@ -11,8 +11,9 @@
 <body>
   
   <ul class="menu align-right" id="nav-bar">
-    <li><a class="nav-link" href="../routes/meal_routes/templates/random_meal.html">Generate Random Meal</a></li>
-    <li><a class="nav-link" href="../routes/meal_routes/templates/random_meal.html">Sign Up/Login</a></li>
+    <li><a class="nav-link" href="{{ url_for('app_user.home') }}">Home</a></li>
+    <li><a class="nav-link" href="{{ url_for('app_meal.get_random_meal') }}">Generate Random Meal</a></li>
+    <li><a class="nav-link" href="{{ url_for('app_meal.get_random_meal') }}">Sign Up/Login</a></li>
   </ul>
   
 {%block content%}{% endblock %}
