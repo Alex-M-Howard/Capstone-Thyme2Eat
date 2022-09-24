@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template, flash, redirect, request
+from flask import Blueprint, render_template, flash, redirect, request, url_for
 
 from ...models.joke_model import Joke
+
+from .forms import SignupForm, LoginForm
 
 import random
 
@@ -12,9 +14,36 @@ app_user = Blueprint(
     url_prefix='/user'
     )
 
+
 @app_user.route('/')
 def home():
+    """ Show Logo if not logged in, otherwise User profile"""
+    return render_template('/home.html')
+    #return redirect(url_for('app_user.login'))
+
+@app_user.route('/signup', methods=["GET", "POST"])
+def signup():
+    """ Show sign up form """
     
-    jokes = Joke.query.all()
+    form = SignupForm()
     
-    return render_template('/home.html', joke=random.choice(jokes))
+    return render_template('/sign_up.html', form=form)
+    
+
+@app_user.route('/login', methods=["GET", "POST"])
+def login():
+    """ Show login form """
+    
+    form = LoginForm()
+    
+    return render_template('/login.html', form=form)
+    
+    
+
+
+
+
+
+
+#jokes = Joke.query.all()
+#joke=random.choice(jokes)
