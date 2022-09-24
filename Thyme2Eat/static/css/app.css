@@ -1,7 +1,16 @@
-#nav-bar{
-  background-color: #1779ba;
+#logo{
+  width: 50%;
+  height: auto;
+  align-self: center;
+  border-radius: 100%;
 }
 
-.nav-link {
-  color: #FFF;
+.logo{
+  display: flex;
+  justify-content: center;
 }
+
+body{
+  height:100vh;
+}
+
