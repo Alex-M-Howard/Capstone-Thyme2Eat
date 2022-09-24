@@ -3,39 +3,31 @@
 {% block title %}Thyme2Eat{% endblock %}
 
 {% block content %}
-<h1 class="text-center">What's on the menu?</h1>
+<h1 class="has-text-centered is-size-3">What's on the menu?</h1>
 
-<div class="grid-container">
-<div class="grid-x grid-padding-x small-up-2 medium-up-3 large-up-4 ">
-
-  
   {% if meals %}
     {% for meal in meals %}
-      <div class="cell small-4 align-self-center"> 
-        <div class="card">
+      
           
             <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><img src="{{meal.image}}" alt="{{meal.title}} image"></a>
           
 
-          <div class="card-divider">
+         
             <a href="{{ url_for('app_meal.show_recipe', meal_id=meal.id) }}"><p style="font-size: 1rem;">{{meal.title}}</p></a>
-          </div>
-        </div>
-      </div>
-
+      
 
     {% endfor %}
   {% endif %}
-  </div>
-
-</div>
-
+  
+<div class="container ">
 <form method="POST">
-  <div class="grid-x grid-padding-x small-up-1 medium-up-5 large-up-5">
-    <div class="cell small-3 medium-1"></div>
-    <div class="cell small-2 medium-3">
 
+    <div class="field-body ">
+      <div class="field is-grouped">
+        <div class="field-label is-normal">
       <label for="diet">Diet</label>
+        </div>
+        <div class="select">
       <select name="diet" id="diet">
         <option value="" selected>Any</option>
         <option value="vegetarian">Vegetarian</option>
@@ -45,10 +37,13 @@
         <option value="pescetarian">Pescetarian</option>
         <option value="paleo">Paleo</option>
       </select>
-    </div>
-  
-    <div class="cell small-2 medium-3">
-      <label for="type">Meal Type</label>
+   </div>
+    
+    
+      <div class="field-label is-normal">
+        <label for="type">Meal Type</label>
+      </div>
+      <div class="select">
       <select name="type" id="type">
         <option value="" selected>Any</option>
         <option value="breakfast">Breakfast</option>
@@ -57,10 +52,12 @@
         <option value="dinner">Dinner</option>
         <option value="Snack">Snack</option>
       </select>
-    </div>
-
-    <div class="cell small-2 medium-3">
-      <label for="intolerances">Avoid</label>
+      </div>
+    
+<div class="field-label is-normal">
+        <label for="intolerances">Avoid</label>
+      </div>
+      <div class="select">
       <select name="intolerances" id="intolerances">
         <option value="" selected>None</option>
         <option value="dairyFree">Dairy</option>
@@ -71,20 +68,13 @@
         <option value="soy">Soy</option>
         <option value="Wheat">Wheat</option>
       </select>
+      </div>
+      
     </div>
-    <div class="cell small-3 medium-1"></div>
-  </div>
-
-
-  <div class="grid-x grid-padding-x align-center">
-    <div class="cell"></div>
-    <div class="cell small-12 medium-4 large-2">
-      <button class="button expanded">Search</button>
+    
     </div>
-    <div class="cell"></div>
-  </div>
-
+    <button class="button is-info is-fullwidth">Search</button>
 </form>
-
 </div>
+
 {% endblock %}
