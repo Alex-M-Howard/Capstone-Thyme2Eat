@@ -28,11 +28,6 @@ app_meal = Blueprint(
     )
 
 
-@app_meal.route('/')
-def home():
-    return render_template('/home.html')
-
-
 @app_meal.route('/random', methods=["GET", "POST"])
 def get_random_meal():
     """ Retrieve and show a random meal with nutrition, ingredients, and directions """
@@ -55,8 +50,7 @@ def get_random_meal():
         return render_template('random_meal.html', meals=meals['results'])
     else:
         return render_template('random_meal.html')
-    
-    
+      
 @app_meal.route(f'/recipe/<int:meal_id>', methods=["GET"])
 def show_recipe(meal_id):
     """Show a recipe with instructions and nutrition facts"""
