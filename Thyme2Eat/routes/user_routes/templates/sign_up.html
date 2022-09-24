@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block title%}Sign Up for Thyme2Eat{% endblock %}
+
+{% block content %}
+  <form method="POST">
+  {% for field in form
+          if field.widget.input_type != 'hidden' %}
+
+      
+        {{ field.label(class_='form-label') }}
+        {{ field(class='form-control') }}
+
+        {% for error in field.errors %}
+          {{ error }}
+        {% endfor %}
+      </p>
+
+    {% endfor %}
+  <button class="button is-primary" type="submit">Sign Up</button>
+  </form>
+
+{% endblock %}
