@@ -1,10 +1,16 @@
-from flask import Blueprint, render_template, flash, redirect, request, url_for
+from flask import Blueprint, render_template, flash, redirect, request, url_for, session, g
+from sqlalchemy.exc import IntegrityError
 
+from ...models.user_model import User
 from ...models.joke_model import Joke
 
 from .forms import SignupForm, LoginForm
 
+from ...db import db
+
 import random
+
+CURRENT_USER_ID = 'current_user_id'
 
 app_user = Blueprint(
     'app_user',
@@ -23,13 +29,39 @@ def home():
 
 @app_user.route('/signup', methods=["GET", "POST"])
 def signup():
-    """ Show sign up form """
+    """ Show sign up form - Validate and create user upon success - Reject and redo on failure """
     
     form = SignupForm()
     
-    return render_template('/sign_up.html', form=form)
-    
+    if form.validate_on_submit():
+        print('were here')
+        try:
+            user = User()
+            form.populate_obj(user)
+            
+            db.session.commit()
 
+        except IntegrityError:
+            flash("Username/Email already taken", 'danger')
+            print('integrity error')
+            return render_template('users/signup.html', form=form)
+        
+        except Exception as err:
+            flash("Unknown error has occurred. Try again later")
+            print('#'*20)
+            print(err)
+            print('#'*20)
+            return render_template('users/signup.html', form=form)
+
+        finally:
+            login(user)    
+            return redirect(url_for('app_user.home'))
+
+    else:
+        print('here we go')
+        return render_template('/sign_up.html', form=form)
+        
+        
 @app_user.route('/login', methods=["GET", "POST"])
 def login():
     """ Show login form """
@@ -47,3 +79,29 @@ def login():
 
 #jokes = Joke.query.all()
 #joke=random.choice(jokes)
+
+
+
+# Handle logging in/out of user
+@app_user.before_request
+def add_user_globally():
+    """If user is logged in, add user_id to Flask global"""
+    
+    if CURRENT_USER_ID in session:
+        g.user = User.query.get(session[CURRENT_USER_ID])
+    else:
+        g.user = None     
+        
+def login(user):
+    """ Log in user """
+    print("login success")
+    
+    print(CURRENT_USER_ID)
+    session[CURRENT_USER_ID] = user.id
+    print(session)
+    
+def logout():
+    """ Log out current user """
+    
+    if CURRENT_USER_ID in session:
+        del session[CURRENT_USER_ID]
