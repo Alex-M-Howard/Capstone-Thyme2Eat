@@ -3,24 +3,56 @@
 
 {% block content %}
 
-  <img src="{{recipe.image}}" alt="{{recipe.title}} Photo">
-  <h1>{{recipe.title}}</h1>
-  <h4>Servings: {{recipe.servings}}</h4>
-  <h4>Thyme 2 Cook: {{recipe.readyInMinutes}} minutes</h4>
+<div class="columns is-centered">
 
-  <ul>
-    {% for ingredient in recipe.extendedIngredients %}
-      <li>{{ingredient.original}}</li>      
-    {% endfor %}
-  </ul>
+  <div class="column is-8">
 
-<ol>
-  {% for step in recipe.analyzedInstructions[0].steps %}
+    
+      
+      <h1 class="is-size-3 has-text-centered">
+          {{recipe.title}}
+        </h1>
+  <div class="columns">
+    <div class="column is-8">
+            <img src="{{recipe.image}}" alt="{{recipe.title}} Photo">
+            
+
+            <div class="columns">
+              <div class="column is-6">
+            <h1 class="is-size-6"><b>Servings:</b> {{recipe.servings}}
+              </div>         
+              <div class="column is-6">
+              <b>Thyme 2 Cook:</b> {{recipe.readyInMinutes}} minutes</h1>
+            </div>
+            </div>
+            
+            
+            <br>
+            <h1 class="is-size-5"><b>Ingredients</b></h1>
+            <ul>
+              {% for ingredient in recipe.extendedIngredients %}
+                <li>{{ingredient.original}}</li>      
+              {% endfor %}
+            </ul>
+
+            <br>
+            <br>
+            <h1 class="is-size-5"><b>Instructions</b></h1>
+          <ol>
+            {% for step in recipe.analyzedInstructions[0].steps %}
+            
+            <li>{{step.step}}</li>
+            {% endfor %}
+          </ol>
   
-  <li>{{step.step}}</li>
-  {% endfor %}
-</ol>
-  <img src="{{nutrition}}" alt="Nutrition Label">
+  </div>
+  <div class="column is-4">
+          <img src="{{nutrition}}" alt="Nutrition Label">
+</div>
+</div>
 
+
+</div>
+  </div>
 
 {% endblock %}
