@@ -1,6 +1,11 @@
 from flask_wtf import FlaskForm
+
 from wtforms_alchemy import ModelForm, model_form_factory
+
+from wtforms.validators import Email, DataRequired, Length
+from wtforms.fields import PasswordField
 from ...models.user_model import User
+
 from ...db import db
 
 # NEEDED TO MAKE WTFORMS ALCHEMY WORK WITH FLASK WTFORMS
@@ -16,10 +21,21 @@ class SignupForm(ModelForm):
 
     class Meta:
         model = User
+        password = PasswordField()
+        
+        validators = {'username': [DataRequired(), Length(min=6)],
+                      'email': [DataRequired(),Email()],
+                      'password': [DataRequired()]
+                      }
 
 class LoginForm(ModelForm):
     """Form for user to login"""
     
     class Meta:
         model = User
-        exclude=['email']
+        only=['username', 'password']
+        password = PasswordField()
+        
+        validators = {'username': [DataRequired(), Length(min=6)],
+                      'password': [DataRequired()]
+                      }
