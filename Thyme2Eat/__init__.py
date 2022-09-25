@@ -1,7 +1,7 @@
 # TO RUN APP -> flask --app Thyme2Eat --debug run
 import os
 
-from flask import Flask, redirect, url_for, session, g
+from flask import Flask, redirect, url_for
 
 from .routes.user_routes.user_routes import app_user
 from .routes.meal_routes.meal_routes import app_meal 
@@ -31,31 +31,9 @@ def create_app():
     connect_to_db(app)
     seed()
     
-    
-    # Register routing blueprints -> https://realpython.com/flask-blueprint/
+    # Register routing blueprints
     app.register_blueprint(app_user)
     app.register_blueprint(app_meal)
-    
-    # Handle logging in/out of user
-    @app.before_request
-    def add_user_globally():
-        """If user is logged in, add user_id to Flask global"""
-        
-        if CURRENT_USER_ID in session:
-            g.user = User.query.get(session[CURRENT_USER_ID])
-        else:
-            g.user = None     
-            
-    def login(user):
-        """ Log in user """
-        
-        session[CURRENT_USER_ID] = user.id
-        
-    def logout():
-        """ Log out current user """
-        
-        if CURRENT_USER_ID in session:
-            del session[CURRENT_USER_ID]
     
     # Handle visit to app
     @app.route('/')
