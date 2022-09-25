@@ -7,5 +7,7 @@ def connect_to_db(app):
     
     db.app = app
     db.init_app(app)
+    
+    # TODO - Remove drop_all in final build
     db.drop_all()
     db.create_all()
