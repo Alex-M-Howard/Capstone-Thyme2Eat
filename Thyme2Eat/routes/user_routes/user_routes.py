@@ -25,57 +25,88 @@ app_user = Blueprint(
 def home():
     """ Show Logo if not logged in, otherwise User profile"""
     return render_template('/home.html')
-    #return redirect(url_for('app_user.login'))
+    #return redirect(url_for('app_user.login_page'))
 
 @app_user.route('/signup', methods=["GET", "POST"])
-def signup():
+def signup_page():
     """ Show sign up form - Validate and create user upon success - Reject and redo on failure """
 
     if CURRENT_USER_ID in session:
-        
-        return redirect(url_for('app_user.show_profile', user_id=15))
+        return redirect(url_for('app_user.show_profile', user_id=session[CURRENT_USER_ID]))
 
     form = SignupForm()
 
     if form.validate_on_submit():
         try:
-            user = User()
-            form.populate_obj(user)
-            
-            db.session.commit()
+            user = User.signup(
+                username=form.username.data,
+                password=form.password.data,
+                email=form.email.data
+            )
 
+            db.session.commit()
+    
         except IntegrityError:
             flash("Username/Email already taken", 'danger')
-            print('integrity error')
-            return render_template('users/signup.html', form=form)
+            return render_template('/sign_up.html', form=form)
         
         except Exception as err:
             flash("Unknown error has occurred. Try again later")
             print(err)
-            return render_template('users/signup.html', form=form)
+            return render_template('/sign_up.html', form=form)
 
-        finally:
-            login(user)    
-            return redirect(url_for('app_user.home'))
+        do_login(user.id)    
+        return redirect(url_for('app_user.home'))
 
     else:
         return render_template('/sign_up.html', form=form)
         
         
 @app_user.route('/login', methods=["GET", "POST"])
-def login():
+def login_page():
     """ Show login form """
+
+    if CURRENT_USER_ID in session:
+        return redirect(url_for('app_user.show_profile', user_id=session[CURRENT_USER_ID]))
     
     form = LoginForm()
     
+    # if form.validate_on_submit():
+    #     try:
+            
+
+    #     except IntegrityError:
+    #         flash("Username/Email already taken", 'danger')
+    #         print('integrity error')
+    #         return render_template('users/signup.html', form=form)
+        
+    #     except Exception as err:
+    #         flash("Unknown error has occurred. Try again later")
+    #         print(err)
+    #         return render_template('users/signup.html', form=form)
+
+    #     finally:
+    #         do_login(user.id)    
+    #         return redirect(url_for('app_user.home'))
+
+    # else:
     return render_template('/login.html', form=form)
     
+
+@app_user.route('/logout', methods=["GET"])
+def logout_user():
+    """Initiate Logout"""
+    
+    do_logout()
+    
+    return redirect(url_for('app_user.home'))
     
 
 
 @app_user.route('/<int:user_id>/profile')
 def show_profile(user_id):
     print(user_id)
+    print(session)
     return render_template('/profile.html')
 
 
@@ -94,12 +125,12 @@ def add_user_globally():
     else:
         g.user = None     
         
-def login(user):
+def do_login(user_id):
     """ Log in user """
     
-    session[CURRENT_USER_ID] = user.id
+    session[CURRENT_USER_ID] = user_id
     
-def logout():
+def do_logout():
     """ Log out current user """
     
     if CURRENT_USER_ID in session:
