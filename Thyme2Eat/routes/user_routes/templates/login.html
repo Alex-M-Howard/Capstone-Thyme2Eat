@@ -7,7 +7,7 @@
 
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
-  <div class="notification is-danger is-light"></div>
+  <div class="notification is-danger is-light">
     <ul class='flashes'>
     {% for category, message in messages %}
       <li class={{category}}>{{ message }}</li>
@@ -40,7 +40,7 @@
           {% endfor %}
         <button class="button is-info" type="submit">Login</button>
     </form>
-    <h1 class="has-text-centered">New here? <a href="{{ url_for('app_user.signup') }}">Sign Up</a></h1>
+    <h1 class="has-text-centered">New here? <a href="{{ url_for('app_user.signup_page') }}">Sign Up</a></h1>
   </div>
 </div>  
 {% endblock %}
