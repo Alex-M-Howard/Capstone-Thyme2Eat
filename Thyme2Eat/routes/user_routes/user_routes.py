@@ -30,7 +30,11 @@ def home():
 @app_user.route('/signup', methods=["GET", "POST"])
 def signup():
     """ Show sign up form - Validate and create user upon success - Reject and redo on failure """
-    
+
+    if CURRENT_USER_ID in session:
+        
+        return redirect(url_for('app_user.show_profile', user_id=15))
+
     form = SignupForm()
 
     if form.validate_on_submit():
@@ -69,8 +73,10 @@ def login():
     
 
 
-
-
+@app_user.route('/<int:user_id>/profile')
+def show_profile(user_id):
+    print(user_id)
+    return render_template('/profile.html')
 
 
 #jokes = Joke.query.all()
@@ -90,11 +96,8 @@ def add_user_globally():
         
 def login(user):
     """ Log in user """
-    print("login success")
     
-    print(CURRENT_USER_ID)
     session[CURRENT_USER_ID] = user.id
-    print(session)
     
 def logout():
     """ Log out current user """
