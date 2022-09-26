@@ -23,10 +23,11 @@ app_user = Blueprint(
     )
 
 
-@app_user.route('/')
-def home():
-    """ Show Logo if not logged in, otherwise User profile"""
-    return render_template('/home.html')   
+# # # # # # # # # # # # # # # # # # # #
+#                                     #
+# User signup and login authorization #
+#                                     #
+# # # # # # # # # # # # # # # # # # # #
 
 @app_user.route('/signup', methods=["GET", "POST"])
 def signup_page():
@@ -61,7 +62,7 @@ def signup_page():
 
     else:
         return render_template('/sign_up.html', form=form)
-               
+
 @app_user.route('/login', methods=["GET", "POST"])
 def login_page():
     """ Show login form """
@@ -85,7 +86,7 @@ def login_page():
             flash("Invalid Credentials.", "danger")
             
     return render_template('/login.html', form=form)
-    
+
 @app_user.route('/logout', methods=["GET"])
 def logout_user():
     """Initiate Logout"""
@@ -93,18 +94,17 @@ def logout_user():
     do_logout()
     
     return redirect(url_for('app_user.home'))
+
+def do_login(user):
+    """ Log in user """
     
-@app_user.route('/<int:user_id>/profile')
-def show_profile(user_id):
-    print(session)
-    return render_template('/profile.html')
-
-
-#jokes = Joke.query.all()
-#joke=random.choice(jokes)
-
-
-
+    session[CURRENT_USER_ID] = user.id
+    
+def do_logout():
+    """ Log out current user """
+    
+    if CURRENT_USER_ID in session:
+        del session[CURRENT_USER_ID]
 
 @app_user.before_request
 @app_meal.before_request
@@ -116,15 +116,35 @@ def add_user_globally():
     else:
         g.user = None
         
-def do_login(user):
-    """ Log in user """
+
+
+# # # # # # # # # # # # # # # # # # # #
+#                                     #
+#   Dashboard, Favorites, Meal Plan   #
+#                                     #
+# # # # # # # # # # # # # # # # # # # #
+
+@app_user.route('/')
+def home():
+    """ Show Logo if not logged in, otherwise User profile"""
+    return render_template('/home.html')   
+               
+@app_user.route('/<int:user_id>/profile')
+def show_profile(user_id):
     
-    session[CURRENT_USER_ID] = user.id
-    
-def do_logout():
-    """ Log out current user """
-    
-    if CURRENT_USER_ID in session:
-        del session[CURRENT_USER_ID]
-        
-    
+    return render_template('/profile.html')
+
+
+
+
+
+
+
+
+
+
+
+
+# Have jokes show when loading recipes?
+#jokes = Joke.query.all()
+#joke=random.choice(jokes)
