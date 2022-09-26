@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+
+{% block title %} Favorite Meals {% endblock %}
+
+{% block content %}
+    <h1 class="is-size-3 has-text-centered">Favorite Meals</h1>
+
+    <h1 class="is-size-5">Breakfast</h1>
+    <ul>
+        {% for meal in user.favorites %}
+            {% if meal.type == 'breakfast' %}
+                <li>{{ meal.title }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+    <h1 class="is-size-5">Brunch</h1>
+    <ul>
+        {% for meal in user.favorites %}
+            {% if meal.type == 'brunch' %}
+                <li>{{ meal.title }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+    <h1 class="is-size-5">Lunch</h1>
+    <ul>
+        {% for meal in user.favorites %}
+            {% if meal.type == 'lunch' %}
+                <li>{{ meal.title }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+    <h1 class="is-size-5">Dinner</h1>
+    <ul>
+        {% for meal in user.favorites %}
+            {% if meal.type == 'dinner' %}
+                <li>{{ meal.title }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+
+    <h1 class="is-size-5">Snack</h1>
+    <ul>
+        {% for meal in user.favorites %}
+            {% if meal.type == 'snack' %}
+                <li>{{ meal.title }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
