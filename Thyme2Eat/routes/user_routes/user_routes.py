@@ -133,11 +133,13 @@ def home():
 def show_profile(user_id):
     
     return render_template('/profile.html')
-
-
-
-
-
+               
+@app_user.route('/<int:user_id>/favorites')
+def show_favorites(user_id):
+    
+    user = User.query.get(g.user.id)
+        
+    return render_template('/favorites.html', user=user)
 
 
 
