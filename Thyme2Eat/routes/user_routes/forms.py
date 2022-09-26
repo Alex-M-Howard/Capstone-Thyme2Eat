@@ -1,41 +1,20 @@
 from flask_wtf import FlaskForm
 
-from wtforms_alchemy import ModelForm, model_form_factory
+from wtforms import StringField, PasswordField
+from wtforms.validators import Email, InputRequired, Length
 
-from wtforms.validators import Email, DataRequired, Length
-from wtforms.fields import PasswordField
-from ...models.user_model import User
 
-from ...db import db
-
-# NEEDED TO MAKE WTFORMS ALCHEMY WORK WITH FLASK WTFORMS
-BaseModelForm = model_form_factory(FlaskForm)
-
-class ModelForm(BaseModelForm):
-    @classmethod
-    def get_session(self):
-        return db.session
-
-class SignupForm(ModelForm):
+class SignupForm(FlaskForm):
     """Form for a user to sign-up"""
 
-    class Meta:
-        model = User
-        password = PasswordField()
-        
-        validators = {'username': [DataRequired(), Length(min=6)],
-                      'email': [DataRequired(),Email()],
-                      'password': [DataRequired()]
-                      }
+    username = StringField("Username", validators=[InputRequired(message='You must enter a username'), Length(min=6)])
+    email = StringField("Email", validators=[InputRequired(), Email(granular_message=True)])
+    password = PasswordField("Password", InputRequired(message='You must enter a password'))
+    
 
 class LoginForm(ModelForm):
     """Form for user to login"""
     
-    class Meta:
-        model = User
-        only=['username', 'password']
-        password = PasswordField()
-        
-        validators = {'username': [DataRequired(), Length(min=6)],
-                      'password': [DataRequired()]
-                      }
+    username = StringField("Username", validators=[InputRequired(message='You must enter a username')])
+    password = PasswordField("Password", InputRequired(message='You must enter a password'))
+
