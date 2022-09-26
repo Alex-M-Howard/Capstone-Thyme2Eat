@@ -32,9 +32,8 @@ def signup():
     """ Show sign up form - Validate and create user upon success - Reject and redo on failure """
     
     form = SignupForm()
-    
+
     if form.validate_on_submit():
-        print('were here')
         try:
             user = User()
             form.populate_obj(user)
@@ -48,9 +47,7 @@ def signup():
         
         except Exception as err:
             flash("Unknown error has occurred. Try again later")
-            print('#'*20)
             print(err)
-            print('#'*20)
             return render_template('users/signup.html', form=form)
 
         finally:
@@ -58,7 +55,6 @@ def signup():
             return redirect(url_for('app_user.home'))
 
     else:
-        print('here we go')
         return render_template('/sign_up.html', form=form)
         
         
