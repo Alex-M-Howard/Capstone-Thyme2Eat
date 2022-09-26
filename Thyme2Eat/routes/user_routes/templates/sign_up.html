@@ -3,6 +3,20 @@
 {% block title%}Sign Up for Thyme2Eat{% endblock %}
 
 {% block content %}
+
+<div class="notification is-danger is-light">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class='flashes'>
+    {% for category, message in messages %}
+      <li class={{category}}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</div>
+
+
 <div class="columns is-centered is-vcentered" style="height: 70vh;">
   <div class="column is-one-third-desktop is-full-mobile is-two-thirds-tablet">
     <h1 class="is-size-3 has-text-centered">Welcome!</h1>
