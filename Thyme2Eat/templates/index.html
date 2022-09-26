@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title%}{% endblock %}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title%}{% endblock %}</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="../static/css/app.css">
-</head>
-<body>
-  
-  <nav class="navbar is-info" role="navigation" aria-label="main-navigation">
-    <div class="navbar-menu">
-      <div class="navbar-end">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="../static/css/app.css" />
+  </head>
+  <body>
+    <nav class="navbar is-info" role="navigation" aria-label="main-navigation">
+      <div class="navbar-menu">
+        <div class="navbar-end">
           <a class="navbar-item" href="{{ url_for('app_user.home') }}">Home</a>
-          <a class="navbar-item" href="{{ url_for('app_meal.get_random_meal') }}">Generate Random Meal</a>
-          <a class="navbar-item" href="{{ url_for('app_user.login') }}">Sign Up/Login</a>
-      </div>
-    </div>
-  </nav>
-  
-{%block content%}{% endblock %}
+          <a
+            class="navbar-item"
+            href="{{ url_for('app_meal.get_random_meal') }}"
+            >Generate Random Meal</a
+          >
 
-<script src="../static/js/vendor/jquery.js"></script>
-<script src="../static/js/app.js"></script>
-</body>
+          {% if not g.user%}
+          <a class="navbar-item" href="{{ url_for('app_user.login_page') }}"
+            >Sign Up/Login</a
+          >
+          {% else %}
+          <a href="{{ url_for('app_user.logout_user') }}" class="navbar-item"
+            >Logout</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    {%block content%}{% endblock %}
+
+    <script src="../static/js/vendor/jquery.js"></script>
+    <script src="../static/js/app.js"></script>
+  </body>
 </html>
