@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, session, g
 from sqlalchemy.exc import IntegrityError
+import random
 
 from ...models.user_model import User
 from ...models.joke_model import Joke
@@ -10,7 +11,6 @@ from ..meal_routes.meal_routes import app_meal
 
 from ...db import db
 
-import random
 
 CURRENT_USER_ID = 'current_user_id'
 
@@ -141,7 +141,11 @@ def show_favorites(user_id):
         
     return render_template('/favorites.html', user=user)
 
-
+@app_user.route('/<int:user_id>/save', methods=["POST"])
+def save_recipe(user_id):
+    """ Save recipe to User's recipe book"""
+    print(user_id)
+    return redirect(url_for('app_meal.get_random_meal'))
 
 
 
