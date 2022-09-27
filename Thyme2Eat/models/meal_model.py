@@ -6,7 +6,6 @@ class Meal(db.Model):
             MEAL MODEL
     ID         : Primary Key
     Title      : Text
-    Summary    : Text
     Image URL  : Text 
     Servings   : Integer
     Time       : Float
@@ -21,11 +20,6 @@ class Meal(db.Model):
     )
 
     title = db.Column(
-        db.Text,
-        nullable=False,
-    )
-
-    summary = db.Column(
         db.Text,
         nullable=False,
     )
