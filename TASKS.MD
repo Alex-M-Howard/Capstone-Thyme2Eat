@@ -1,0 +1,12 @@
+If user is logged in, show a favorite or save button
+https://stackoverflow.com/questions/26022310/accessing-flask-g-variable-in-javascript
+
+Clicking button sends axios request to python to save that meal in database
+Clicking button again, if exists -> remove from database
+
+Route to see saved recipes
+  - Sorted by meal type (breakfast, lunch, dinner)
+
+Add search box to navbar -> use autocomplete
+
+
