@@ -3,6 +3,10 @@
 {% block title %}Thyme2Eat{% endblock %}
 
 {% block content %}
+<script>
+    const user = "{{ g.user }}";
+</script>
+
 <h1 class="has-text-centered is-size-3">What's on the menu?</h1>
 
 <div class="columns is-multiline" id="results">
