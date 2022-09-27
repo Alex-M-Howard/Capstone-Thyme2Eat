@@ -9,4 +9,17 @@ Route to see saved recipes
 
 Add search box to navbar -> use autocomplete
 
+Update navbar layout so not cutoff on small screen
 
+Add profile pic option?
+
+Font awesome for loading on random meals
+
+User profile
+  -Meal Plan
+  -Favorite Meals
+  -????
+  
+When looking at a recipe, see similar? 
+
+Can we make a printable version like a real recipe site?
