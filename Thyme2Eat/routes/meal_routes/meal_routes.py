@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, request, url_for
+from flask import Blueprint, render_template, flash, redirect, request, url_for, g
 
 import requests
 
@@ -31,6 +31,7 @@ app_meal = Blueprint(
 @app_meal.route('/random', methods=["GET", "POST"])
 def get_random_meal():
     """ Retrieve and show a random meal with nutrition, ingredients, and directions """
+    
     if request.method=="POST":
         r = request.form
         
