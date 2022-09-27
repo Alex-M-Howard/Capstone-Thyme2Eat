@@ -141,16 +141,6 @@ def show_favorites(user_id):
         
     return render_template('/favorites.html', user=user)
 
-@app_user.route('/<int:user_id>/save', methods=["POST"])
-def save_recipe(user_id):
-    """ Save recipe to User's recipe book"""
-    print(user_id)
-    return redirect(url_for('app_meal.get_random_meal'))
-
-
-
-
-
 # Have jokes show when loading recipes?
 #jokes = Joke.query.all()
 #joke=random.choice(jokes)
