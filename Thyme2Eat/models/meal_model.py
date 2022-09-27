@@ -1,5 +1,7 @@
 from ..db import db
 
+from ..models.favorites_model import Favorite
+
 
 class Meal(db.Model):
     """ 
@@ -32,6 +34,10 @@ class Meal(db.Model):
         db.Integer,
         nullable=False,
     )
+    
+    instructions = db.Column(db.Text,)
+    
+    meal_type = db.Column(db.Text,)
 
     time = db.Column(
         db.Float,
@@ -43,6 +49,11 @@ class Meal(db.Model):
         nullable=False,
     )
     
+    users = db.relationship(
+        'User', 
+        secondary='favorites',
+        primaryjoin=(Favorite.meal_id==id),
+        )
   
     def __repr__(self):
         return f"<User #{self.id}: {self.title} - {self.summary}>"

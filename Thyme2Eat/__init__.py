@@ -9,6 +9,7 @@ from .routes.meal_routes.meal_routes import app_meal
 from .models.meal_model import Meal
 from .models.user_model import User
 from .models.joke_model import Joke
+from .models.favorites_model import Favorite
 
 from .db import connect_to_db, db
 

@@ -1,5 +1,7 @@
 from ..db import db
 
+from ..models.favorites_model import Favorite
+
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt()
 
@@ -37,7 +39,12 @@ class User(db.Model):
         db.String,
         nullable=False,
     )
-
+    
+    favorites = db.relationship('Meal', 
+                                secondary='favorites',
+                                primaryjoin=(Favorite.user_id==id),
+                                )
+    
     def __repr__(self):
         return f"<User #{self.id}: {self.username}, {self.email}>"
 
