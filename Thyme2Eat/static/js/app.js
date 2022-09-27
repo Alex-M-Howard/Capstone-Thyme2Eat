@@ -4,7 +4,6 @@ BASE_RECIPES_URL = "https://api.spoonacular.com/recipes";
 NUMBER_OF_RESULTS = 24
 
 
-
 /*************************************
  * 
  *  Add event listener for search button
@@ -25,7 +24,7 @@ $('#random-meal-search').on('click', (async (event) => {
 /*************************************
  * 
  *  getRandomMeals
- *  Axios.get API Request for Random Meals
+ *  Axios.get API Request for Random Meals   --> /complexSearch
  *  Returns an array of objects
  * 
  */
@@ -59,43 +58,46 @@ const getRandomMeals = async () => {
  * 
  *  showMeals
  *  Loop through meals
- *  Add card divs to create meal cards
+ *  Create meal cards
  *  Display on page
+ *  If user is logged in, create SAVE button
  * 
  */
 
 const showMeals = (meals) => {
     
     for (meal of meals) {
-        $("#results").append(
-            $("<div>")
-            .addClass("column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet")
-            .html(`
+      let div = $("<div>").addClass(
+        "column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet"
+      ).html(`
           <div class="card">
             <div class="card-image">
-              
                 <figure class="image is-4by3">
-                <a href="{{ url_for('app_meal.show_recipe', meal_id=${meal.id}) }}">  
-                <img src="${meal.image}" alt="${meal.title} image">
+                  <a href="/meals/recipe/${meal.id}">  
+                  <img src="${meal.image}" alt="${meal.title} image">
+                  </a>
                 </figure>
-              </a>
             </div>
 
             <div class="card-header">
               <div class="card-header-title">
-                <a href="{{ url_for('app_meal.show_recipe', meal_id=${meal.id}) }}"><p style="font-size: 1rem;">${meal.title}</p></a>
-                
-                {% if g.user %}
-                <form action='{{ url_for("app_user.save_recipe", user_id=g.user.id) }}'method="POST">
-                  <button class="button is-primary" type="submit">Save Recipe</button>
-                </form>
-                {% endif %}
-              
+                <a href="/meals/recipe/${meal.id}"><p style="font-size: 1rem;">${meal.title}</p></a>
               </div>
             </div>
-        `
-            )
-        ) 
+        `);
+            
+      if (user !== 'None') {
+        $('div.card-header-title:last').html(
+          $('div.card-header-title:last').html() +                 
+                `
+                <form action='{{ url_for("app_user.save_recipe", user_id=g.user.id) }}'method="POST">
+                  <button class="button is-primary" type="submit">Save Recipe</button>
+                </form>`              
+          );
+      } 
+      
+    $("#results").append($(div))
+      
     }
 }
 
