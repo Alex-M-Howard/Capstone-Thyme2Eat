@@ -17,7 +17,7 @@ CURRENT_USER_ID = 'current_user_id'
 app_user = Blueprint(
     'app_user',
     __name__,
-    static_folder='static',
+    static_folder='../../static',
     template_folder='templates',
     url_prefix='/user'
     )
