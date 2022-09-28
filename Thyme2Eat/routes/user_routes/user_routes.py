@@ -1,15 +1,16 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, session, g
 from sqlalchemy.exc import IntegrityError
-import random
 
 from ...models.user_model import User
 from ...models.joke_model import Joke
 
-from .forms import SignupForm, LoginForm
+from ...db import db
 
 from ..meal_routes.meal_routes import app_meal
 
-from ...db import db
+from .forms import SignupForm, LoginForm
+
+
 
 
 CURRENT_USER_ID = 'current_user_id'
