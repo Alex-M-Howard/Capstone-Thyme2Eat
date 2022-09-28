@@ -38,3 +38,23 @@ def get_nutrition(meal_id):
     image = requests.get(f"{RECIPES_API}/{meal_id}/{NUTRITION_LABEL}", params)
     
     return image.url
+
+def add_meal_to_db(meal_id):
+    """Add meal to database"""
+
+    recipe = get_recipe(meal_id)
+    
+    new_meal = Meal(
+        id=meal_id, 
+        title=recipe['title'], 
+        image_url=recipe['image'], 
+        servings=recipe['servings'], 
+        time=recipe['readyInMinutes'], 
+        diets=recipe['diets'], 
+        instructions = recipe['instructions'],
+        meal_type=recipe['dishTypes'])
+    
+    db.session.add(new_meal)
+    db.session.commit()
+
+    return new_meal
