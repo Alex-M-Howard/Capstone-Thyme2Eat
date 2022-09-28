@@ -130,6 +130,6 @@ const saveRecipeEvent = () => {
 
     const response = await axios.post(`/meals/${mealId}/save`);
 
-    return response.data.results;
+    return response;
   }))
 }
