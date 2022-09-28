@@ -58,3 +58,8 @@ def add_meal_to_db(meal_id):
     db.session.commit()
 
     return new_meal
+
+def retrieve_meal_from_db(meal_id):
+    """Get meal from database"""
+    
+    return Meal.query.get(meal_id)
