@@ -63,3 +63,25 @@ def retrieve_meal_from_db(meal_id):
     """Get meal from database"""
     
     return Meal.query.get(meal_id)
+
+def add_meal_to_favorites(meal_id):
+    """Add meal to user's favorites"""
+    
+    user = User.query.get(g.user.id)
+    
+    favorite_meal = Favorite(user_id=user.id, meal_id=meal_id)
+    
+    db.session.add(favorite_meal)
+    db.session.commit()
+    
+    return
+
+def remove_meal_from_favorites(meal_id):
+    """Remove meal from user's favorites"""
+    
+    favorite_meal = Favorite.query.filter_by(user_id=g.user.id, meal_id=meal_id).one()
+    
+    db.session.delete(favorite_meal)    
+    db.session.commit()
+    
+    return
