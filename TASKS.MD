@@ -1,25 +1,24 @@
 If user is logged in, show a favorite or save button
-https://stackoverflow.com/questions/26022310/accessing-flask-g-variable-in-javascript    |--> Done
+                                                                               |--> Done
+Clicking button sends axios request to python to save that meal in database    |--> Done
+Clicking button again, if exists -> remove from database                       |--> Done
 
-Clicking button sends axios request to python to save that meal in database              |
-Clicking button again, if exists -> remove from database
-
-Route to see saved recipes                                                               |
+Route to see saved recipes                                                    
   - Sorted by meal type (breakfast, lunch, dinner)
  
-Add search box to navbar -> use autocomplete                                             |
+Add search box to navbar -> use autocomplete
 
-Update navbar layout so not cutoff on small screen                                       |--> Done
+Update navbar layout so not cutoff on small screen                             |--> Done
 
-Add profile pic option?                                                                  |
+Add profile pic option?                                                        
 
-Font awesome for loading on random meals                                                 |
+Font awesome for loading on random meals                                       
 
-User profile                                                                             |
+User profile                                                                   
   -Meal Plan
   -Favorite Meals
   -????
   
-When looking at a recipe, see similar?                                                   |
+When looking at a recipe, see similar?                                         
 
-Can we make a printable version like a real recipe site?                                 |
+Can we make a printable version like a real recipe site?                       
