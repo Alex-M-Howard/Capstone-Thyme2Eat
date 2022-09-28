@@ -49,11 +49,7 @@ class Meal(db.Model):
         nullable=False,
     )
     
-    users = db.relationship(
-        'User', 
-        secondary='favorites',
-        primaryjoin=(Favorite.meal_id==id),
-        )
+    
   
     def __repr__(self):
         return f"<User #{self.id}: {self.title} - {self.summary}>"
