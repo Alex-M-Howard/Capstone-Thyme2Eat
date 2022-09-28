@@ -1,4 +1,13 @@
+from flask import g
+
+from ...db import db
+
+from ...models.meal_model import Meal
+from ...models.user_model import User
+from ...models.favorites_model import Favorite
+
 import requests
+
 
 SPOONACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'
 RECIPES_API = 'https://api.spoonacular.com/recipes'
