@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, flash, redirect, request, url_for, g
+from flask import Blueprint, render_template, flash, redirect, request, url_for, g, jsonify
+from sqlalchemy.exc import IntegrityError
 
 from ...models.meal_model import Meal
+from ...models.user_model import User
 
-from .meal_functions import get_recipe, get_nutrition
-
+from .meal_functions import *
 
 # Create blueprint and custom routes
 app_meal = Blueprint(
@@ -32,25 +33,20 @@ def show_recipe(meal_id):
     
 @app_meal.route('/<int:meal_id>/save', methods=["POST"])
 def save_recipe(meal_id):
-    """ Save recipe to User's recipe book"""
+    """ Save recipe to User's recipe book. If not in database, add in"""
     
+    meal = retrieve_meal_from_db(meal_id)
     
-    recipe = get_recipe(meal_id)
+    if meal == None: 
+        meal = add_meal_to_db(meal_id)   
     
-    
-    # TODO --> Check if meal in database, or add meal
-    new_meal = Meal(
-        id=meal_id, 
-        title=recipe.title, 
-        image_url=recipe.image, 
-        servings=recipe.servings, 
-        time=recipe.readyInMinutes, 
-        diets=recipe.diets, 
-        instructions = recipe.analyzedInstructions,
-        meal_type=recipe.dishTypes)
-    
-    db.session.add(new_meal)
-    db.session.commit()
-    
-    return new_meal
+    if meal in g.user.favorites:
+        remove_meal_from_favorites(meal_id)
+        return jsonify({"result": "removed"}), 200
+
+    else:
+        add_meal_to_favorites(meal_id)
+        return jsonify({"result": "added"}), 200
+
+
 
