@@ -12,7 +12,7 @@ Update navbar layout so not cutoff on small screen                             |
 
 Add profile pic option?                                                        
 
-Font awesome for loading on random meals                                       
+Font awesome for loading on random meals? --> Loads so quickly, is it necessary?                                       
 
 User profile                                                                   
   -Meal Plan
@@ -22,3 +22,5 @@ User profile
 When looking at a recipe, see similar?                                         
 
 Can we make a printable version like a real recipe site?                       
+
+User logged in api route
