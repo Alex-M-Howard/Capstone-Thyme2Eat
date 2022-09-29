@@ -52,4 +52,4 @@ class Meal(db.Model):
     
   
     def __repr__(self):
-        return f"<User #{self.id}: {self.title} - {self.summary}>"
+        return f"<Meal #{self.id}: {self.title}>"
