@@ -37,6 +37,9 @@
             >Sign Up/Login</a
           >
           {% else %}
+          <a class="navbar-item" href="{{ url_for('app_user.show_favorites', user_id=g.user.id) }}">My Recipes</a>
+          
+
           <a href="{{ url_for('app_user.logout_user') }}" class="navbar-item"
             >Logout</a
           >
