@@ -5,12 +5,12 @@
 {% block content %}
 <script>
     const user = "{{ g.user }}";
+    const user_meals = "{{ g.user.favorites }}"
 </script>
 
 <h1 class="has-text-centered is-size-3">What's on the menu?</h1>
 
-<div class="columns is-multiline" id="results">
-</div>
+
 
 <form method="POST">
 <div class="columns is-centered">
