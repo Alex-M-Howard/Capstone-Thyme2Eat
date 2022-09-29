@@ -28,11 +28,12 @@ $(document).ready(function () {
  * 
  */
 $('#random-meal-search').on('click', (async (event) => {
-    event.preventDefault()
+  event.preventDefault()
 
-    let meals = await getRandomMeals();
-    showMeals(meals);
-    saveRecipeEvent();
+  let meals = await getRandomMeals();
+  $('#results').empty();
+  showMeals(meals);
+  saveRecipeEvent();
 }))
 
 
@@ -78,8 +79,7 @@ const getRandomMeals = async () => {
  * 
  */
 const showMeals = (meals) => {
-    
-    for (meal of meals) {
+  for (let meal of meals){
       let div = $("<div>").addClass(
         "column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet"
       ).html(`
@@ -98,20 +98,29 @@ const showMeals = (meals) => {
               </div>
             </div>
         `);
-            
+    
     $("#results").append($(div));
+    
       // If user logged in, create SAVE buttons
       if (user !== 'None') {
-        $('div.card-header-title:last').html(
-          $('div.card-header-title:last').html() +                 
+
+        // If meal already in user favorites, Have Remove button instead
+        if (user_meals.includes(meal.id)) {
+          $("div.card-header-title:last").html(
+            $("div.card-header-title:last").html() +
               `
-                <button class="button is-primary save-recipe" data-meal_id=${meal.id}  type="submit">Save Recipe</button>
-              `              
+                <button class="button is-primary save-recipe" data-meal_id=${meal.id}  type="submit">Remove</button>
+              `
           );
+        }else{
+          $("div.card-header-title:last").html(
+            $("div.card-header-title:last").html() +
+              `
+                <button class="button is-primary save-recipe" data-meal_id=${meal.id}  type="submit">Save</button>
+              `
+          );
+        }
       } 
-      
-    $("#results").append($(div))
-      
     }
 }
 
