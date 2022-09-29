@@ -28,11 +28,12 @@ $(document).ready(function () {
  * 
  */
 $('#random-meal-search').on('click', (async (event) => {
-    event.preventDefault()
+  event.preventDefault()
 
-    let meals = await getRandomMeals();
-    showMeals(meals);
-    saveRecipeEvent();
+  let meals = await getRandomMeals();
+  $('#results').empty();
+  showMeals(meals);
+  saveRecipeEvent();
 }))
 
 
