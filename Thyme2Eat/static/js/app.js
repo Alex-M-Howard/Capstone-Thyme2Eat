@@ -139,11 +139,15 @@ const saveRecipeEvent = () => {
     
     let mealId = $(event.target).data('meal_id')
 
-    const response = axios.post(`/meals/${mealId}/save`);
+    const responsePromise = axios.post(`/meals/${mealId}/save`);
     changeButton($(event.target))
     
-    
-    return response;
+    responsePromise.then((resp) => {
+      // Disable button
+      console.log(resp)
+    }).catch((err) => {
+      console.log(err)
+    })
   }))
 }
 
