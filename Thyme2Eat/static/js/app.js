@@ -28,12 +28,11 @@ $(document).ready(function () {
  * 
  */
 $('#random-meal-search').on('click', (async (event) => {
-  event.preventDefault()
+    event.preventDefault()
 
-  let meals = await getRandomMeals();
-  $('#results').empty();
-  showMeals(meals);
-  saveRecipeEvent();
+    let meals = await getRandomMeals();
+    showMeals(meals);
+    saveRecipeEvent();
 }))
 
 
@@ -100,6 +99,7 @@ const showMeals = (meals) => {
             </div>
         `);
             
+    $("#results").append($(div));
       // If user logged in, create SAVE buttons
       if (user !== 'None') {
         $('div.card-header-title:last').html(
