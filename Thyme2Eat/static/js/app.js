@@ -136,10 +136,29 @@ const saveRecipeEvent = () => {
   $('.save-recipe').on('click', (async (event) => {
     event.preventDefault()
    
+    
     let mealId = $(event.target).data('meal_id')
 
-    const response = await axios.post(`/meals/${mealId}/save`);
-
+    const response = axios.post(`/meals/${mealId}/save`);
+    changeButton($(event.target))
+    
+    
     return response;
   }))
+}
+
+
+/*************************************
+ * 
+ *  Change button text on randomly 
+ *  generated meals. 
+ *  Save --> Remove
+ *  Remove --> Save 
+ */
+const changeButton = (button) => {
+  if ($(button).text() === "Save") {
+    $(button).text("Remove");
+  } else {
+    $(button).text("Save");
+  }
 }
