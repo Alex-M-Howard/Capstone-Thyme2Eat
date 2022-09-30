@@ -3,56 +3,72 @@
 {% block title %} Favorite Meals {% endblock %}
 
 {% block content %}
-    <h1 class="is-size-3 has-text-centered">Favorite Meals</h1>
+<script>
+    const user = "{{ g.user }}";
+    const user_meals = "{{ g.user.favorites }}"
+</script>
+    <h1 class="is-size-3 has-text-centered"></h1>
+<div class="tabs is-toggle is-toggle-rounded is-centered is-boxed" id="favorite-tabs">
+  <ul>
+    <li class="is-active" id="breakfast">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-egg" aria-hidden="true"></i></span>
+        <span>Breakfast</span>
+      </a>
+    </li>
+    <li id="brunch">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-mug-saucer" aria-hidden="true"></i></span>
+        <span>Brunch</span>
+      </a>
+    </li>
+    <li id="lunch">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-burger" aria-hidden="true"></i></span>
+        <span>Lunch</span>
+      </a>
+    </li>
+    <li id="dinner">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-pizza-slice" aria-hidden="true"></i></span>
+        <span>Dinner</span>
+      </a>
+    </li>
+    </li>
+    <li id="snack">
+      <a>
+        <span class="icon is-small"><i class="fa-solid fa-ice-cream" aria-hidden="true"></i></span>
+        <span>Snacks</span>
+      </a>
+    </li>
+  </ul>
+</div>
 
-    <h1 class="is-size-5">Breakfast</h1>
-    <ul>
-        {% for meal in user.favorites %}
-            {% if meal.type == 'breakfast' %}
-                <li>{{ meal.title }}</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
 
+    <div class="results">
+        <div class="columns is-multiline">
+            {% for meal in meals %}
+                {% if 'breakfast' in meal.meal_type%}
+                <div class="column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                            <a href="/meals/recipe/{{meal.id}}">  
+                            <img src="{{meal.image_url}}" alt="{{meal.title}} image">
+                            </a>
+                            </figure>
+                        </div>
 
-    <h1 class="is-size-5">Brunch</h1>
-    <ul>
-        {% for meal in user.favorites %}
-            {% if meal.type == 'brunch' %}
-                <li>{{ meal.title }}</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-
-
-    <h1 class="is-size-5">Lunch</h1>
-    <ul>
-        {% for meal in user.favorites %}
-            {% if meal.type == 'lunch' %}
-                <li>{{ meal.title }}</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-
-
-    <h1 class="is-size-5">Dinner</h1>
-    <ul>
-        {% for meal in user.favorites %}
-            {% if meal.type == 'dinner' %}
-                <li>{{ meal.title }}</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-
-
-
-    <h1 class="is-size-5">Snack</h1>
-    <ul>
-        {% for meal in user.favorites %}
-            {% if meal.type == 'snack' %}
-                <li>{{ meal.title }}</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
+                        <div class="card-header">
+                            <div class="card-header-title">
+                                <a href="/meals/recipe/{{meal.id}}"><p style="font-size: 1rem;">{{meal.title}}</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}

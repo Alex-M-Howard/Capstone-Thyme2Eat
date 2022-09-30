@@ -166,3 +166,58 @@ const changeButton = (button) => {
     $(button).text("Save");
   }
 }
+
+
+
+/*************************************
+ * 
+ *  Add event listener for meal type tabs 
+ *  Prevent Default Button Function
+ * 
+ */
+$('#favorite-tabs').on('click',"a", (async (event) => {
+  event.preventDefault()
+  
+  $("ul").children("li").removeClass("is-active")
+  $(event.target).closest("li").toggleClass("is-active");
+  
+  let mealType = $(event.target).closest("li").attr('id');
+  $("#results").empty()
+  showFavoriteMeal(mealType);
+}))
+
+
+const showFavoriteMeal = (mealType) => {
+  
+  let userMeals = getUserFavorites()
+
+  for (let meal of userMeals) {
+    let div = $("<div>").addClass(
+      "column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet"
+    ).html(`
+          <div class="card">
+            <div class="card-image">
+                <figure class="image is-4by3">
+                  <a href="/meals/recipe/${meal.id}">  
+                  <img src="${meal.image}" alt="${meal.title} image">
+                  </a>
+                </figure>
+            </div>
+
+            <div class="card-header">
+              <div class="card-header-title">
+                <a href="/meals/recipe/${meal.id}"><p style="font-size: 1rem;">${meal.title}</p></a>
+              </div>
+            </div>
+        `);
+
+    $("#results").append($(div));
+  }
+
+}
+
+
+const getUserFavorites = async () => {
+//GET USER FAVORITES
+  const response = await axios.get(`${BASE_RECIPES_URL}/complexSearch`, {params});
+}

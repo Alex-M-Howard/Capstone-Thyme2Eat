@@ -107,6 +107,7 @@ def do_logout():
     if CURRENT_USER_ID in session:
         del session[CURRENT_USER_ID]
 
+# Give user object to user & meal routes
 @app_user.before_request
 @app_meal.before_request
 def add_user_globally():
@@ -139,8 +140,9 @@ def show_profile(user_id):
 def show_favorites(user_id):
     
     user = User.query.get(g.user.id)
-        
-    return render_template('/favorites.html', user=user)
+    meals = user.favorites
+    
+    return render_template('/favorites.html', user=user, meals=meals)
 
 # Have jokes show when loading recipes?
 #jokes = Joke.query.all()
