@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title%}{% endblock %}</title>
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/22a73e52cb.js" crossorigin="anonymous"></script>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    
+    <!-- My Style Sheets -->
     <link rel="stylesheet" href="../static/css/app.css" />
   </head>
   <body>
@@ -50,8 +53,14 @@
 
     {%block content%}{% endblock %}
 
+    
+    <!-- jQuery -->
     <script src="../static/js/vendor/jquery.js"></script>
+    
+    <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <!-- My JavaScript -->
     <script src="../static/js/app.js"></script>
   </body>
 </html>
