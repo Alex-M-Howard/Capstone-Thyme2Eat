@@ -177,29 +177,34 @@ const changeButton = (button) => {
  */
 $('#favorite-tabs').on('click',"a", (async (event) => {
   event.preventDefault()
+  $("#results").empty();
   
   $("ul").children("li").removeClass("is-active")
   $(event.target).closest("li").toggleClass("is-active");
   
   let mealType = $(event.target).closest("li").attr('id');
-  $("#results").empty()
-  showFavoriteMeal(mealType);
+  console.log(mealType)
+  let meals = await getUserFavorites();
+
+  
+  showFavoriteMeal(meals, mealType);
 }))
 
 
-const showFavoriteMeal = (mealType) => {
-  
-  let userMeals = getUserFavorites()
-
-  for (let meal of userMeals) {
-    let div = $("<div>").addClass(
-      "column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet"
-    ).html(`
+const showFavoriteMeal = (meals, mealType) => {
+    
+  for (let meal of meals) {
+    console.log(mealType)
+    console.log(meal.meal_type)
+    if (meal.meal_type.includes(mealType)) {
+      let div = $("<div>").addClass(
+        "column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet"
+      ).html(`
           <div class="card">
             <div class="card-image">
                 <figure class="image is-4by3">
                   <a href="/meals/recipe/${meal.id}">  
-                  <img src="${meal.image}" alt="${meal.title} image">
+                  <img src="${meal.image_url}" alt="${meal.title} image">
                   </a>
                 </figure>
             </div>
@@ -211,13 +216,15 @@ const showFavoriteMeal = (mealType) => {
             </div>
         `);
 
-    $("#results").append($(div));
+      $("#results").append($(div));
+    }
   }
-
 }
 
 
 const getUserFavorites = async () => {
 //GET USER FAVORITES
-  const response = await axios.get(`${BASE_RECIPES_URL}/complexSearch`, {params});
+  const responsePromise = await axios.get(`/user/${userId}/get_favorites`);
+
+  return responsePromise.data
 }

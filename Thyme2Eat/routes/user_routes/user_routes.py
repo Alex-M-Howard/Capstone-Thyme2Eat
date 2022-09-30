@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, url_for, session, g
+from flask import Blueprint, render_template, flash, redirect, url_for, session, g, jsonify
 from sqlalchemy.exc import IntegrityError
 
 from ...models.user_model import User
@@ -7,6 +7,8 @@ from ...models.joke_model import Joke
 from ...db import db
 
 from ..meal_routes.meal_routes import app_meal
+
+from .user_functions import *
 
 from .forms import SignupForm, LoginForm
 
@@ -144,6 +146,10 @@ def show_favorites(user_id):
     
     return render_template('/favorites.html', user=user, meals=meals)
 
-# Have jokes show when loading recipes?
-#jokes = Joke.query.all()
-#joke=random.choice(jokes)
+@app_user.route('/<int:user_id>/get_favorites')
+def get_favorites(user_id):
+    """ Retrieve and return saved user meals"""
+    
+    meals = retrieve_user_saved_meals(user_id)
+        
+    return jsonify(meals), 200

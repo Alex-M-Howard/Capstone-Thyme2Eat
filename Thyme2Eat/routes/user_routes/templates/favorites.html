@@ -4,9 +4,9 @@
 
 {% block content %}
 <script>
-    const user = "{{ g.user }}";
-    const user_meals = "{{ g.user.favorites }}"
+    const userId = "{{ g.user.id }}";
 </script>
+
     <h1 class="is-size-3 has-text-centered"></h1>
 <div class="tabs is-toggle is-toggle-rounded is-centered is-boxed" id="favorite-tabs">
   <ul>
@@ -45,8 +45,7 @@
 </div>
 
 
-    <div class="results">
-        <div class="columns is-multiline">
+        <div class="columns is-multiline" id="results">
             {% for meal in meals %}
                 {% if 'breakfast' in meal.meal_type%}
                 <div class="column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet">
@@ -69,6 +68,5 @@
                 {% endif %}
             {% endfor %}
         </div>
-    </div>
 
 {% endblock %}
