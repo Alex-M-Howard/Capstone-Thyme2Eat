@@ -1,9 +1,10 @@
 from flask import g 
+import random
 
 from ...db import db 
 
 from ...models.user_model import User
-
+from ...models.joke_model import Joke
 
 def retrieve_user_saved_meals(user_id):
     """Retrieve User's saved meals from DB"""
@@ -14,3 +15,11 @@ def retrieve_user_saved_meals(user_id):
     print(type(favorites))
 
     return favorites
+
+
+def get_random_joke():
+    """Retrieve random joke from DB"""
+    
+    jokes = Joke.query.all()
+    
+    return random.choice(jokes)

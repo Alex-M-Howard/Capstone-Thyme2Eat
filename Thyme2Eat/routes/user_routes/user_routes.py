@@ -142,9 +142,9 @@ def show_profile(user_id):
 def show_favorites(user_id):
     
     user = User.query.get(g.user.id)
-    meals = user.favorites
+    joke = get_random_joke()
     
-    return render_template('/favorites.html', user=user, meals=meals)
+    return render_template('/favorites.html', user=user, joke=joke)
 
 @app_user.route('/<int:user_id>/get_favorites')
 def get_favorites(user_id):
