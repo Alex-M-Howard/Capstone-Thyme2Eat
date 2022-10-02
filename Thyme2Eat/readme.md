@@ -9,10 +9,14 @@ source venv/bin/activate
 # Install requirements
 pip install -r requirements.txt
 
+# Create Database - Using PostgreSQL
+creatdb thyme2eat
+
 # Run app
 flask --app Thyme2Eat run
 
 # Navigate to localhost in Browser
+In the browser go to 127.0.0.1:5000/
  
 # Sign Up
 
