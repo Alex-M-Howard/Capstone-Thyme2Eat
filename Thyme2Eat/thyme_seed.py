@@ -7,7 +7,7 @@ def seed():
   j2 = Joke(text="Smoking will kill you. Bacon will kill. But, smoking bacon  will cure it")
   j3 = Joke(text="I eat my tacos over a Tortilla. That way when stuff falls out, BOOM, another taco")
   j4 = Joke(text="Why do the French eat snails? They don't like fast food")
-  j5 = Joke(text="One day you're the best thing since sliced brea. The next, you're toast")
+  j5 = Joke(text="One day you're the best thing since sliced bread. The next, you're toast")
   j6 = Joke(text="I've just written a song about tortillas...actually, it's more of a wrap")
   j7 = Joke(text="Justice is a dish best served cold because if it were served warm, it would be justwater")
   j8 = Joke(text="For Halloween we dressed up as almonds. Everyone could tell we were nuts")
