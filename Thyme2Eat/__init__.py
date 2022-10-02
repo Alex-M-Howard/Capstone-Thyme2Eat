@@ -1,4 +1,3 @@
-# TO RUN APP -> flask --app Thyme2Eat --debug run
 import os
 
 from flask import Flask, redirect, url_for
