@@ -7,10 +7,13 @@
 
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
-  <div class="notification is-danger is-light">
+  
     <ul class='flashes'>
     {% for category, message in messages %}
-      <li class={{category}}>{{ message }}</li>
+  
+  <div class="notification is-{{category}} is-light">
+    <li class={{category}}>{{ message }}</li>
+    </div>
     {% endfor %}
     </ul>
   </div>
