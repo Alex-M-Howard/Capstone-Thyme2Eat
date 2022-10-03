@@ -9,11 +9,12 @@
 # DONE - Change Save/Remove button to a heart icon
 # DONE - When sign out -> Redirect to login page
 # DONE - Add search box to navbar
+# DONE - When looking at a recipe, see similar
 
-
+# TODO - Get images for similar recipes 
 
 # TODO - If saving recipe fails, have icon turn back to correct state
 # TODO - User profile: Meal Plan, Favorites
-# TODO - When looking at a recipe, see similar?                                         
+                                        
 # TODO - User logged in api route
 
