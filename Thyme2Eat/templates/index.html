@@ -34,7 +34,7 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Meals</a>
 
-            <div class="navbar-dropdown">
+            <div class="navbar-dropdown is-right">
               <a class="navbar-item" href="{{ url_for('app_meal.get_random_meal') }}">Generate Random Meal</a>
 
               {% if g.user %}
@@ -42,7 +42,7 @@
               {% endif %}
 
               <form action="{{ url_for('app_meal.search') }}" method="GET">
-                <input type="text" class="input navbar-item" name="query" placeholder="Search for meal or ingredient">
+                <input type="text" class="input navbar-item" name="query" placeholder="Search">
                 <button type="submit" style="visibility: hidden;">submit</button>
               </form>
             
