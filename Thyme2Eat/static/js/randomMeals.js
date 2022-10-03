@@ -76,7 +76,12 @@ const showMeals = (meals) => {
 
             <div class="card-header">
               <div class="card-header-title">
-                <a href="/meals/recipe/${meal.id}"><p style="font-size: 1rem;">${meal.title}</p></a>
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <a href="/meals/recipe/${meal.id}"><p style="font-size: 1rem;">${meal.title}</p></a>
+                  </div>
+                  <div class="column is-one-quarter button-location"></div>
+                </div>
               </div>
             </div>
         `);
@@ -87,18 +92,14 @@ const showMeals = (meals) => {
     if (user !== "None") {
       // If meal already in user favorites, Have Remove button instead
       if (user_meals.includes(meal.id)) {
-        $("div.card-header-title:last").html(
-          $("div.card-header-title:last").html() +
-            `
-                <button class="button is-primary save-recipe" data-meal_id=${meal.id}  type="submit">Remove</button>
-              `
+        $("div.button-location:last").html(
+          $("div.button-location:last").html() +
+            `<a id="remove-button" class="buttons is-align-content-flex-end"><i class="fa-solid fa-heart" data-meal_id=${meal.id}></i><a>`
         );
       } else {
-        $("div.card-header-title:last").html(
-          $("div.card-header-title:last").html() +
-            `
-                <button class="button is-primary save-recipe" data-meal_id=${meal.id}  type="submit">Save</button>
-              `
+        $("div.button-location:last").html(
+          $("div.button-location:last").html() +
+            `<a id="save-button" class="buttons is-align-content-flex-end"><i class="fa-regular fa-heart" data-meal_id=${meal.id}></i><a>`
         );
       }
     }
@@ -113,7 +114,7 @@ const showMeals = (meals) => {
  *
  */
 const saveRecipeEvent = () => {
-  $(".save-recipe").on("click", async (event) => {
+  $(".buttons").on("click", async (event) => {
     event.preventDefault();
 
     let mealId = $(event.target).data("meal_id");
@@ -121,14 +122,6 @@ const saveRecipeEvent = () => {
     const responsePromise = axios.post(`/meals/${mealId}/save`);
     changeButton($(event.target));
 
-    responsePromise
-      .then((resp) => {
-        // Disable button
-        console.log(resp);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   });
 };
 
@@ -140,9 +133,6 @@ const saveRecipeEvent = () => {
  *  Remove --> Save
  */
 const changeButton = (button) => {
-  if ($(button).text() === "Save") {
-    $(button).text("Remove");
-  } else {
-    $(button).text("Save");
-  }
+    $(button).toggleClass("fa-solid fa-heart");
+    $(button).toggleClass("fa-regular fa-heart");    
 };

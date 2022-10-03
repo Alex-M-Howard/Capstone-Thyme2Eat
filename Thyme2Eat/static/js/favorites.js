@@ -76,9 +76,7 @@ const showFavoriteMeal = (meals, mealType) => {
 
       $("div.card-header-title:last").html(
         $("div.card-header-title:last").html() +
-          `
-                <button class="button is-primary remove-recipe" data-meal_id=${meal.id}  type="submit">Remove</button>
-              `
+        `<a id="remove-button" class="buttons is-align-content-flex-end"><i class="fa-solid fa-heart" data-meal_id=${meal.id}></i><a>`
       );
     }
   }
@@ -107,13 +105,14 @@ const getUserFavorites = async () => {
  * 
  */
 const addRemoveListener = (mealType) => {
-$(".remove-recipe").on("click", async (event) => {
+$(".buttons").on("click", async (event) => {
   event.preventDefault();
 
   let mealId = $(event.target).data("meal_id");
   
   removeSavedRecipe(mealId);
-  getFavorites(event=0, mealType=mealType);
+  $(event.target).closest('.column').remove()
+  // getFavorites(event=0, mealType=mealType);
 });  
 }
 
