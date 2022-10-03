@@ -48,7 +48,6 @@ def save_recipe(meal_id):
         add_meal_to_favorites(meal_id)
         return jsonify({"result": "added"}), 200
 
-
 @app_meal.route('/<int:meal_id>/print')
 def print_recipe(meal_id):
     """Bring up printable version of recipe for user"""
@@ -57,3 +56,12 @@ def print_recipe(meal_id):
     nutrition = get_nutrition(meal_id)
 
     return render_template('printable_recipe.html', recipe=recipe, nutrition=nutrition)
+
+@app_meal.route('/search')
+def search():
+    """Search for query in API"""
+    
+    query = request.args["query"]
+    search_results = search_meals(query)
+      
+    return render_template('search.html', search_results=search_results)

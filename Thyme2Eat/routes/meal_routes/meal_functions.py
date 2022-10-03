@@ -94,3 +94,17 @@ def remove_meal_from_favorites(meal_id):
     db.session.commit()
     
     return
+
+def search_meals(query):
+    """Find meals based on user input"""
+    
+    params = {
+        "apiKey": SPOONACULAR_API_KEY,
+        "query": query,
+        "number": 20
+    }
+    
+    results = requests.get(f"{RECIPES_API}/{COMPLEX_SEARCH}", params)
+    
+    return results.json()
+    
