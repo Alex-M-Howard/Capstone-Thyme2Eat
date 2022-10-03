@@ -95,8 +95,9 @@ def logout_user():
     """Initiate Logout"""
     
     do_logout()
+    flash('Successfully signed out', 'success')
     
-    return redirect(url_for('app_user.home'))
+    return redirect(url_for('app_user.login_page'))
 
 def do_login(user):
     """ Log in user """
