@@ -107,4 +107,16 @@ def search_meals(query):
     results = requests.get(f"{RECIPES_API}/{COMPLEX_SEARCH}", params)
     
     return results.json()
+
+def get_similar_recipes(meal_id):
+    """Fetch similar recipes when a user views a recipe"""
+
+    params = {
+        "apiKey": SPOONACULAR_API_KEY,
+        "id": meal_id,
+        "number": 4
+    }
+
+    similar = requests.get(f"{RECIPES_API}/{meal_id}/{SIMILAR}", params)    
     
+    return similar.json()

@@ -25,11 +25,14 @@ def get_random_meal():
 @app_meal.route(f'/recipe/<int:meal_id>', methods=["GET"])
 def show_recipe(meal_id):
     """Show a recipe with instructions and nutrition facts"""
-    # TODO Have it check database first, and then go to API last
-    recipe = get_recipe(meal_id)
-    nutrition = get_nutrition(meal_id)
 
-    return render_template('show_recipe.html', recipe=recipe, nutrition=nutrition)
+    recipe = retrieve_meal_from_db(meal_id)
+    if recipe == None: recipe = get_recipe(meal_id)
+
+    nutrition = get_nutrition(meal_id)
+    similar = get_similar_recipes(meal_id)
+    
+    return render_template('show_recipe.html', recipe=recipe, nutrition=nutrition, similar=similar)
     
 @app_meal.route('/<int:meal_id>/save', methods=["POST"])
 def save_recipe(meal_id):
