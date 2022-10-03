@@ -17,3 +17,12 @@ body{
 .hidden{
   visibility: hidden;
 }
+
+@media print 
+{
+   @page
+   {
+    size: A4;
+    size: portrait;
+  }
+}
