@@ -9,7 +9,7 @@ from ...models.favorites_model import Favorite
 import requests
 
 
-SPOONACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'
+SPOONACULAR_API_KEY = '1970c7ca2a3543389708d99f3a67d353' #'25bf790109054f9387a17986d94ebcfb'
 RECIPES_API = 'https://api.spoonacular.com/recipes'
 
 # Searching the API

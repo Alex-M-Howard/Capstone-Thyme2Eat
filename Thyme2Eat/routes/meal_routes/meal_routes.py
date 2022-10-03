@@ -25,7 +25,7 @@ def get_random_meal():
 @app_meal.route(f'/recipe/<int:meal_id>', methods=["GET"])
 def show_recipe(meal_id):
     """Show a recipe with instructions and nutrition facts"""
-    
+    # TODO Have it check database first, and then go to API last
     recipe = get_recipe(meal_id)
     nutrition = get_nutrition(meal_id)
 
