@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{recipe.title}}</title>
+        <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    
+    <!-- My Style Sheets -->
+    <link rel="stylesheet" href="../static/css/app.css" />
+</head>
+<body>
+    
+<div class="columns is-centered">
+    <div class="column is-8">
+      <h2 class="is-size-3 has-text-centered">
+          {{recipe.title}}
+      </h2>
+    <div class="columns">
+        <div class="column is-1"></div>
+        <div class="column is-5">
+            <h2 class="is-size-6"><b>Servings:</b> {{recipe.servings}}
+        </div>         
+        <div class="column is-5">
+            <b>Thyme 2 Cook:</b> {{recipe.readyInMinutes}} minutes</h2>
+        </div>
+        <div class="column is-1"></div>
+    </div>
+     
+    <div class="columns">
+        <div class="column is-1"></div>
+        <div class="column is-5">
+            <h2 class="is-size-5"><b>Ingredients</b></h2>
+            <ul>
+            {% for ingredient in recipe.extendedIngredients %}
+                <li>{{ingredient.original}}</li>      
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="column is-5">
+        <img src="{{nutrition}}" alt="Nutrition Label">
+        </div>
+        <div class="column is-1"></div>
+    </div>
+</div>
+
+  </div>
+
+  <div class="columns">
+    <div class="column is-1"></div>
+    <div class="column is-10">
+    <h2 class="is-size-5"><b>Instructions</b></h2>
+          <ol>
+            {% for step in recipe.analyzedInstructions[0].steps %}
+            
+            <li>{{step.step}}</li>
+            {% endfor %}
+          </ol>
+</div>
+          <div class="column is-1"></div>
+  </div>
+
+  <!-- My JavaScript -->
+<script src="../../../static/js/showRecipe.js"></script>
+<script>
+    window.print()
+</script>
+</body>
+</html>
+
+
+

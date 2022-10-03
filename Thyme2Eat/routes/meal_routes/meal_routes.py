@@ -49,4 +49,11 @@ def save_recipe(meal_id):
         return jsonify({"result": "added"}), 200
 
 
+@app_meal.route('/<int:meal_id>/print')
+def print_recipe(meal_id):
+    """Bring up printable version of recipe for user"""
+    
+    recipe = get_recipe(meal_id)
+    nutrition = get_nutrition(meal_id)
 
+    return render_template('printable_recipe.html', recipe=recipe, nutrition=nutrition)
