@@ -8,10 +8,10 @@
 # DONE - Can we make a printable version like a real recipe site?                       
 # DONE - Change Save/Remove button to a heart icon
 # DONE - When sign out -> Redirect to login page
+# DONE - Add search box to navbar
 
-# TODO - Add search box to navbar -> use autocomplete
 
-# TODO - Add profile pic option?                                                        
+
 # TODO - If saving recipe fails, have icon turn back to correct state
 # TODO - User profile: Meal Plan, Favorites
 # TODO - When looking at a recipe, see similar?                                         
