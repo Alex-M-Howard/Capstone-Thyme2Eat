@@ -6,17 +6,14 @@
 # DONE - Split JS files up for the code to match the HTML pages they affect 
 # DONE - Add Remove button for recipes while in your favorites
 # DONE - Can we make a printable version like a real recipe site?                       
+# DONE - Change Save/Remove button to a heart icon
+# DONE - When sign out -> Redirect to login page
 
 # TODO - Add search box to navbar -> use autocomplete
 
 # TODO - Add profile pic option?                                                        
-
-# TODO - Font awesome for loading on random meals? --> Loads so quickly, is it necessary?                                       
-
+# TODO - If saving recipe fails, have icon turn back to correct state
 # TODO - User profile: Meal Plan, Favorites
-
 # TODO - When looking at a recipe, see similar?                                         
-
-
 # TODO - User logged in api route
 
