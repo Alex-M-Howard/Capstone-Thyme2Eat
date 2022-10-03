@@ -17,24 +17,28 @@ $("#favorite-tabs").on("click", "a", async (event) => {
 
 /*************************************
  * 
- * @param {object - HTML element} event 
+ * @param {object - HTML element} event
+ * @param {String - Selected Meal Filter from REMOVE BUTTON} mealType 
  * Clear previous results
  * Set tab to active
  * Get user favorites in that category
  * Call showFavoriteMeal
  * 
  */
-const getFavorites = async (event) => {
+const getFavorites = async (event, mealType) => {
   $("#results").empty();
 
-  // Selecting Filter Tabs
-  $("ul").children("li").removeClass("is-active");
-  $(event.target).closest("li").toggleClass("is-active");
+  if(event){
+    // Selecting Filter Tabs
+    $("ul").children("li").removeClass("is-active");
+    $(event.target).closest("li").toggleClass("is-active");
+    mealType = $(event.target).closest("li").attr("id");
+  }
 
-  let mealType = $(event.target).closest("li").attr("id");
   let meals = await getUserFavorites();
 
   showFavoriteMeal(meals, mealType);
+  addRemoveListener(mealType);
 };
 
 
@@ -73,7 +77,7 @@ const showFavoriteMeal = (meals, mealType) => {
       $("div.card-header-title:last").html(
         $("div.card-header-title:last").html() +
           `
-                <button class="button is-primary save-recipe" data-meal_id=${meal.id}  type="submit">Remove</button>
+                <button class="button is-primary remove-recipe" data-meal_id=${meal.id}  type="submit">Remove</button>
               `
       );
     }
@@ -91,3 +95,34 @@ const getUserFavorites = async () => {
 
   return responsePromise.data;
 };
+
+
+
+/*************************************
+ *
+ *  Add event listener for removing meal
+ *  Prevent Default Button function
+ *  Call removeSavedRecipe function
+ *  Call getFavorites function
+ * 
+ */
+const addRemoveListener = (mealType) => {
+$(".remove-recipe").on("click", async (event) => {
+  event.preventDefault();
+
+  let mealId = $(event.target).data("meal_id");
+  
+  removeSavedRecipe(mealId);
+  getFavorites(event=0, mealType=mealType);
+});  
+}
+
+/**
+ * 
+ * Remove a favorite from User's Profile
+ * 
+ */
+const removeSavedRecipe = async (mealId) => {
+  const responsePromise = axios.delete(`/user/${userId}/remove_favorite/${mealId}`)
+
+}

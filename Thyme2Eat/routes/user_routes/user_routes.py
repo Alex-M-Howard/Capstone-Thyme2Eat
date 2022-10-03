@@ -153,3 +153,12 @@ def get_favorites(user_id):
     meals = retrieve_user_saved_meals(user_id)
         
     return jsonify(meals), 200
+
+@app_user.route('/<int:user_id>/remove_favorite/<int:meal_id>', methods=['DELETE'])
+def remove_from_favorites(user_id, meal_id):
+    """Remove a recipe from user's DB"""
+    
+    remove_saved_recipe(user_id, meal_id)
+    
+    return jsonify({'result': 'deleted'}), 200
+    
