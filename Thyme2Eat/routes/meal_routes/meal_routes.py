@@ -26,7 +26,9 @@ def get_random_meal():
 def show_recipe(meal_id):
     """Show a recipe with instructions and nutrition facts"""
 
-    recipe = retrieve_meal_from_db(meal_id)
+    #recipe = retrieve_meal_from_db(meal_id)
+    recipe = None
+    
     if recipe == None: recipe = get_recipe(meal_id)
 
     nutrition = get_nutrition(meal_id)
@@ -38,7 +40,8 @@ def show_recipe(meal_id):
 def save_recipe(meal_id):
     """ Save recipe to User's recipe book. If not in database, add in"""
     
-    meal = retrieve_meal_from_db(meal_id)
+    #meal = retrieve_meal_from_db(meal_id)
+    meal = None
     
     if meal == None: 
         meal = add_meal_to_db(meal_id)   

@@ -35,7 +35,7 @@ class Meal(db.Model):
         nullable=False,
     )
     
-    instructions = db.Column(db.Text,)
+    analyzedInstructions = db.Column(db.Text)
     
     meal_type = db.Column(db.Text,)
 

@@ -53,6 +53,8 @@ def add_meal_to_db(meal_id):
 
     recipe = get_recipe(meal_id)
     
+    print(recipe["instructions"])
+    
     new_meal = Meal(
         id=meal_id, 
         title=recipe['title'], 
@@ -60,7 +62,7 @@ def add_meal_to_db(meal_id):
         servings=recipe['servings'], 
         time=recipe['readyInMinutes'], 
         diets=recipe['diets'], 
-        instructions = recipe['instructions'],
+        analyzedInstructions = recipe['instructions'],
         meal_type=recipe['dishTypes'])
     
     db.session.add(new_meal)
