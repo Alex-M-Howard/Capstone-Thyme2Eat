@@ -11,7 +11,6 @@
 # DONE - Add search box to navbar
 # DONE - When looking at a recipe, see similar
 
-# TODO - Get images for similar recipes 
 
 # TODO - If saving recipe fails, have icon turn back to correct state
 # TODO - User profile: Meal Plan, Favorites
@@ -20,3 +19,6 @@
 
 
 # TODO - How to save an array to DB to grab instructions for saved meal instead of block of text
+# Ran out of points very quickly today. Need to figure out point values for each endpoint I have
+# Complex search is the reason why --> limit search results
+
