@@ -9,7 +9,7 @@ from ...models.favorites_model import Favorite
 import requests
 
 
-SPOONACULAR_API_KEY = '1970c7ca2a3543389708d99f3a67d353' #'25bf790109054f9387a17986d94ebcfb'
+SPOONACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'#'1970c7ca2a3543389708d99f3a67d353' 
 RECIPES_API = 'https://api.spoonacular.com/recipes'
 
 # Searching the API
@@ -116,9 +116,12 @@ def get_similar_recipes(meal_id):
     params = {
         "apiKey": SPOONACULAR_API_KEY,
         "id": meal_id,
-        "number": 4
+        "number": 1
     }
 
-    similar = requests.get(f"{RECIPES_API}/{meal_id}/{SIMILAR}", params)    
+    meal = requests.get(f"{RECIPES_API}/{meal_id}/{SIMILAR}", params)  
+    meal = meal.json()
     
-    return similar.json()
+    similar = get_recipe(meal[0]['id'])
+    print(similar)
+    return similar

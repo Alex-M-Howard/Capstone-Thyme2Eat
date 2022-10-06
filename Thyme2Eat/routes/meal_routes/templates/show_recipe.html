@@ -49,44 +49,35 @@
 
 
 
-<h1 class="is-size-4">Like this recipe? Try these too!</h1>
+<h1 class="is-size-4 has-text-centered">Is this recipe not quite what you wanted? Try this instead!</h1>
   
 <div class="columns is-multiline" id="results">
-{% for meal in similar %}
-  <div class="column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet">
+  {% if g.user%}
+  <div class="column is-4"></div>
+  <div class="column is-4">
     <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <a href="/meals/recipe/{{meal.id}}">
-            <img src="{{meal.image}}" alt="{{meal.title}} image">
-          </a>
-        </figure>
-      </div>
-
-      <div class="card-header">
-        <div class="card-header-title">
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <a href="/meals/recipe/{{meal.id}}"><p style="font-size: 1rem;">{{meal.title}}</p></a>
+            <div class="card-image">
+                <figure class="image is-4by3">
+                  <a href="/meals/recipe/{{similar.id}}">  
+                  <img src="{{similar.image}}" alt="{{similar.title}} image">
+                  </a>
+                </figure>
             </div>
-            <div class="column is-one-quarter button-location">
-              {% if g.user %}
-                {% if meal.id in g.user.favorites %}
-                  <a id="remove-button" class="buttons is-align-content-flex-end"><i class="fa-solid fa-heart" data-meal_id=${meal.id}></i></a>
-                {% else %}
-                  <a id="save-button" class="buttons is-align-content-flex-end"><i class="fa-regular fa-heart" data-meal_id=${meal.id}></i></a>
-                {% endif %}
-              {% endif %}
 
+            <div class="card-header">
+              <div class="card-header-title">
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <a href="/meals/recipe/{{similar.id}}"><p style="font-size: 1rem;">{{similar.title}}</p></a>
+                  </div>
+                  <div class="column is-one-quarter button-location"></div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+            </div>
+  {% endif %}
+    <div class="column is-4"></div>
 
-      </div>
-
-    </div>
-  </div>
-{% endfor %}
 </div>
 
 
