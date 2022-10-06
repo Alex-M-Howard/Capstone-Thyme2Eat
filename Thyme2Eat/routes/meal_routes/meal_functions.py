@@ -13,17 +13,16 @@ SPOONACULAR_API_KEY = '25bf790109054f9387a17986d94ebcfb'#'1970c7ca2a3543389708d9
 RECIPES_API = 'https://api.spoonacular.com/recipes'
 
 # Searching the API
-COMPLEX_SEARCH = 'complexSearch'
-AUTOCOMPLETE_SEARCH = 'autocomplete'
+COMPLEX_SEARCH = 'complexSearch'             # 1 point + 0.01/recipe returned
 FIND_BY_INGREDIENTS = 'findByIngredients'
 
 # Recipe endpoints
-INFO = 'information'
-SIMILAR = 'similar'
-NUTRITION_LABEL = 'nutritionLabel.png'
+INFO = 'information'                         # 1 point
+SIMILAR = 'similar'                          # 1 point + 0.01/recipe returned
+NUTRITION_LABEL = 'nutritionLabel.png'       # 1 point
 
 # Miscellaneous API endpoints
-FOOD_JOKES_API = 'food/jokes/random'
+FOOD_JOKES_API = 'food/jokes/random'         # 1 point
 
 def get_recipe(meal_id):
     """Get recipe data --> Returns JSON"""
