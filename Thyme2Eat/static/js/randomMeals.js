@@ -1,4 +1,4 @@
-NUMBER_OF_RANDOM_RESULTS = 32;
+NUMBER_OF_RANDOM_RESULTS = 12;
 
 /*************************************
  *
