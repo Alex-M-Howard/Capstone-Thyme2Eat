@@ -103,7 +103,7 @@ def search_meals(query):
     params = {
         "apiKey": SPOONACULAR_API_KEY,
         "query": query,
-        "number": 20
+        "number": 8
     }
     
     results = requests.get(f"{RECIPES_API}/{COMPLEX_SEARCH}", params)
