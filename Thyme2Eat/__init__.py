@@ -31,7 +31,7 @@ def create_app():
     connect_to_db(app)
     # db.drop_all()
     # db.create_all()
-    #seed()
+    # seed()
     
     # Register routing blueprints
     app.register_blueprint(app_user)

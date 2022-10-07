@@ -48,11 +48,11 @@
   </div>
 
 
-
+{% if similar%}
 <h1 class="is-size-4 has-text-centered">Is this recipe not quite what you wanted? Try this instead!</h1>
   
 <div class="columns is-multiline" id="results">
-  {% if g.user%}
+  
   <div class="column is-4"></div>
   <div class="column is-4">
     <div class="card">
@@ -75,12 +75,12 @@
               </div>
             </div>
             </div>
-  {% endif %}
+ 
     <div class="column is-4"></div>
 
 </div>
 
-
+ {% endif %}
 
   <!-- My JavaScript -->
 <script src="../../../static/js/showRecipe.js"></script>

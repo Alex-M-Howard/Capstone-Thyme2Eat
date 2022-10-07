@@ -26,12 +26,14 @@ def get_random_meal():
 def show_recipe(meal_id):
     """Show a recipe with instructions and nutrition facts"""
 
-    #recipe = retrieve_meal_from_db(meal_id)
-    recipe = None
+    recipe = retrieve_meal_from_db(meal_id)
     
-    if recipe == None: recipe = get_recipe(meal_id)
-
-    nutrition = get_nutrition(meal_id)
+    if recipe == None: 
+        recipe = get_recipe(meal_id)
+        nutrition = get_nutrition(meal_id)
+    else:
+        nutrition = recipe.nutrition_url
+    
     similar = get_similar_recipes(meal_id)
     
     return render_template('show_recipe.html', recipe=recipe, nutrition=nutrition, similar=similar)

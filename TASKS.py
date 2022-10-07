@@ -37,13 +37,5 @@
  Similar recipe when viewing
  Currently trying to add in meal plan
  
- Ask about consistency with backend vs frontend -> Should I change it now or keep it in mind for next time?
 
 '''
-#  import json
-#  json.dumps()
-#  json.loads()
-
-# >>> import sys
-# >>> sys.path.append('.')
-# >>> import Thyme2Eat

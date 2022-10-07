@@ -55,16 +55,18 @@ def add_meal_to_db(meal_id):
     recipe = get_recipe(meal_id)
     nutrition_url = get_nutrition(meal_id)
     
+    ingredients = json.dumps(recipe["extendedIngredients"])
     instructions = json.dumps(recipe["analyzedInstructions"])
-    
+
     new_meal = Meal(
         id=meal_id, 
         title=recipe['title'], 
-        image_url=recipe['image'], 
+        image=recipe['image'], 
         servings=recipe['servings'], 
         time=recipe['readyInMinutes'], 
         diets=recipe['diets'], 
         analyzedInstructions=instructions,
+        extendedIngredients=ingredients,
         meal_type=recipe['dishTypes'],
         nutrition_url=nutrition_url)
     
@@ -76,7 +78,18 @@ def add_meal_to_db(meal_id):
 def retrieve_meal_from_db(meal_id):
     """Get meal from database"""
     
-    return Meal.query.get(meal_id)
+    meal = Meal.query.get(meal_id)
+    
+    if meal:
+        parsed_ingredients = json.loads(meal.extendedIngredients)
+        meal.extendedIngredients = parsed_ingredients
+        
+        parsed_instructions = json.loads(meal.analyzedInstructions)
+        meal.analyzedInstructions = parsed_instructions
+        
+        return meal
+    
+    return None
 
 def add_meal_to_favorites(meal_id):
     """Add meal to user's favorites"""
@@ -125,6 +138,10 @@ def get_similar_recipes(meal_id):
     meal = requests.get(f"{RECIPES_API}/{meal_id}/{SIMILAR}", params)  
     meal = meal.json()
     
-    similar = get_recipe(meal[0]['id'])
+    if meal:
+        similar = get_recipe(meal[0]['id'])
+        return similar
+    else:
+        return None
 
-    return similar
+    

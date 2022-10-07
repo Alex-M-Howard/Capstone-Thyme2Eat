@@ -60,7 +60,7 @@ const showFavoriteMeal = (meals, mealType) => {
             <div class="card-image">
                 <figure class="image is-4by3">
                   <a href="/meals/recipe/${meal.id}">  
-                  <img src="${meal.image_url}" alt="${meal.title} image">
+                  <img src="${meal.image}" alt="${meal.title} image">
                   </a>
                 </figure>
             </div>
