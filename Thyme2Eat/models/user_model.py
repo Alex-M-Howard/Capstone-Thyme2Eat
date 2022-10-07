@@ -27,56 +27,17 @@ class User(db.Model):
         primary_key=True,
     )
 
-    first_name = db.Column(
-        db.String,
-        nullable=False,
-    )
-
-    last_name = db.Column(
-        db.String,
-        nullable=False
-    )
-
-    username = db.Column(
-        db.String,
-        nullable=False,
-        unique=True,
-    )
-
-    email = db.Column(
-        db.String,
-        nullable=False,
-        unique=True,
-    )
-
-    password = db.Column(
-        db.String,
-        nullable=False,
-    )
+    username = db.Column(db.String, nullable=False, unique=True)
+    email = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
     
-    api_username = db.Column(
-        db.String,
-        nullable=True,
-    )
+    favorites = db.relationship('Meal', secondary='favorites', primaryjoin=(Favorite.user_id==id))
     
-    api_password = db.Column(
-        db.String,
-        nullable=True,
-    )
-    
-    
-    
-    favorites = db.relationship('Meal', 
-                                secondary='favorites',
-                                primaryjoin=(Favorite.user_id==id),
-                                )
-    
-    def __repr__(self):
-        return f"<User #{self.id}: {self.first_name} {self.last_name} -> {self.username}, {self.email}>"
+    def __repr__(self): return f"<User #{self.id}: {self.username}, {self.email}>"
 
 
     @classmethod
-    def signup(cls, first_name, last_name, username, email, password):
+    def signup(cls, username, email, password):
         """
           Hash password using Bcrypt
           Create New User
@@ -86,8 +47,6 @@ class User(db.Model):
         hashed_pwd = bcrypt.generate_password_hash(password).decode('UTF-8')
 
         user = User(
-            first_name=first_name,
-            last_name=last_name,
             username=username,
             email=email,
             password=hashed_pwd

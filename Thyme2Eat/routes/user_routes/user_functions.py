@@ -44,8 +44,6 @@ def connect_user_to_api():
     params = {
         "apiKey": SPOONACULAR_API_KEY,
         "username" : user.username,
-        "firstName" : user.first_name,
-        "lastName" : user.last_name,
         "email": user.email
     }
     print(user)
