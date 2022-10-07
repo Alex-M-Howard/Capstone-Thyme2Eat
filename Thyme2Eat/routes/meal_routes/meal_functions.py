@@ -1,3 +1,5 @@
+import json
+
 from flask import g
 
 from ...db import db
@@ -51,8 +53,9 @@ def add_meal_to_db(meal_id):
     """Add meal to database"""
 
     recipe = get_recipe(meal_id)
+    nutrition_url = get_nutrition(meal_id)
     
-    print(recipe["instructions"])
+    instructions = json.dumps(recipe["analyzedInstructions"])
     
     new_meal = Meal(
         id=meal_id, 
@@ -61,8 +64,9 @@ def add_meal_to_db(meal_id):
         servings=recipe['servings'], 
         time=recipe['readyInMinutes'], 
         diets=recipe['diets'], 
-        analyzedInstructions = recipe['instructions'],
-        meal_type=recipe['dishTypes'])
+        analyzedInstructions=instructions,
+        meal_type=recipe['dishTypes'],
+        nutrition_url=nutrition_url)
     
     db.session.add(new_meal)
     db.session.commit()
@@ -122,5 +126,5 @@ def get_similar_recipes(meal_id):
     meal = meal.json()
     
     similar = get_recipe(meal[0]['id'])
-    print(similar)
+
     return similar
