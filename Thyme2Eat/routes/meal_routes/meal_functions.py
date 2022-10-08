@@ -144,4 +144,12 @@ def get_similar_recipes(meal_id):
     else:
         return None
 
+def remove_meal_from_db(meal_id):
+    """Remove meal from database"""
     
+    meal = Meal.query.get(meal_id)
+    db.session.delete(meal)
+    db.session.commit()
+       
+
+    return
