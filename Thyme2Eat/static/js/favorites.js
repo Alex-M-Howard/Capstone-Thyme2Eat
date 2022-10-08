@@ -38,6 +38,7 @@ const getFavorites = async (event, mealType) => {
   let meals = await getUserFavorites();
 
   showFavoriteMeal(meals, mealType);
+  checkIfNoMeals(); ////////////////////////////////////////////////////////////////////////////////////////////ADDDDDDDD
   addRemoveListener(mealType);
 };
 
@@ -111,8 +112,8 @@ $(".buttons").on("click", async (event) => {
   let mealId = $(event.target).data("meal_id");
   
   removeSavedRecipe(mealId);
-  $(event.target).closest('.column').remove()
-  // getFavorites(event=0, mealType=mealType);
+  $(event.target).closest('.column').remove();
+  checkIfNoMeals();
 });  
 }
 
@@ -122,6 +123,18 @@ $(".buttons").on("click", async (event) => {
  * 
  */
 const removeSavedRecipe = async (mealId) => {
-  const responsePromise = axios.delete(`/user/${userId}/remove_favorite/${mealId}`)
+  const responsePromise = axios.delete(`/meals/${mealId}/remove`)
 
+}
+
+const checkIfNoMeals = () => {
+  if (!$("#results").html()) {
+    $("#results")
+      .html(`
+    <div class="column is-4"></div>
+    <div class="column is-4 has-text-centered">No meals found</div>
+    <div class="column is-4"></div>
+    `
+      )
+  }
 }
