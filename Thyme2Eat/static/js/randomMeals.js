@@ -110,17 +110,29 @@ const showMeals = (meals) => {
  *
  *  Add event listener for SAVE buttons
  *  Prevent Default Button Function
+ *  If anchor tag clicked on instead of heart check
  *  Call USER route to Save/Remove Meal
  *
  */
 const saveRecipeEvent = () => {
   $(".buttons").on("click", async (event) => {
     event.preventDefault();
-
+    
+    if ($(event.target).is("a")) {
+      event.target = $(event.target).children("i");
+    }
+    
+    
     let mealId = $(event.target).data("meal_id");
 
-    const responsePromise = axios.post(`/meals/${mealId}/save`);
+    if ($(event.target).hasClass("fa-solid")) {
+      const responsePromise = axios.delete(`/meals/${mealId}/remove`)
+    } else {
+      const responsePromise = axios.post(`/meals/${mealId}/save`);
+    }
+
     changeButton($(event.target));
+    
 
   });
 };
