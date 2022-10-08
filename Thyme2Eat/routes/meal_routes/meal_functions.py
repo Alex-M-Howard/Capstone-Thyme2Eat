@@ -89,7 +89,8 @@ def retrieve_meal_from_db(meal_id):
         
         return meal
     
-    return None
+    else:
+        return None
 
 def add_meal_to_favorites(meal_id):
     """Add meal to user's favorites"""
@@ -111,7 +112,13 @@ def remove_meal_from_favorites(meal_id):
     db.session.delete(favorite_meal)    
     db.session.commit()
     
+    favorited_by_others = Favorite.query.filter_by(meal_id=meal_id).all()
+    
+    if not favorited_by_others:
+        remove_meal_from_db(meal_id)
+    
     return
+        
 
 def search_meals(query):
     """Find meals based on user input"""
@@ -151,5 +158,4 @@ def remove_meal_from_db(meal_id):
     db.session.delete(meal)
     db.session.commit()
        
-
     return
