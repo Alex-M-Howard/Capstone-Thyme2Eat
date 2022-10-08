@@ -10,22 +10,15 @@ class User(db.Model):
     """ 
             USER MODEL
     ID           : Primary Key
-    First name   : String
-    Last Name    : String
     Username     : String
     Email        : String
     Password     : String -> Bcrypt to hash
-    api_username : String -> To connect to Spoonacular Meal Plan
-    api_password : String -> To connect to Spoonacular Meal Plan
     """
     
 
     __tablename__ = 'users'
 
-    id = db.Column(
-        db.Integer,
-        primary_key=True,
-    )
+    id = db.Column(db.Integer, primary_key=True)
 
     username = db.Column(db.String, nullable=False, unique=True)
     email = db.Column(db.String, nullable=False, unique=True)
