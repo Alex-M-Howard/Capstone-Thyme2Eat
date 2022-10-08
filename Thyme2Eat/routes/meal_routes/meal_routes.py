@@ -40,21 +40,23 @@ def show_recipe(meal_id):
     
 @app_meal.route('/<int:meal_id>/save', methods=["POST"])
 def save_recipe(meal_id):
-    """ Save recipe to User's recipe book. If not in database, add in"""
+    """ Save recipe to User's favorites. If not in database, add in"""
     
-    #meal = retrieve_meal_from_db(meal_id)
-    meal = None
-    
+    meal = retrieve_meal_from_db(meal_id)
+       
     if meal == None: 
         meal = add_meal_to_db(meal_id)   
-    
-    if meal in g.user.favorites:
-        remove_meal_from_favorites(meal_id)
-        return jsonify({"result": "removed"}), 200
 
-    else:
-        add_meal_to_favorites(meal_id)
-        return jsonify({"result": "added"}), 200
+    add_meal_to_favorites(meal_id)
+    return jsonify({"result": "added"}), 200
+
+@app_meal.route('/<int:meal_id>/remove', methods=["DELETE"])
+def remove_recipe(meal_id):
+    """ Delete recipe from User's favorites"""
+    
+    remove_meal_from_favorites(meal_id)
+    
+    return jsonify({"result": "favorite deleted"})
 
 @app_meal.route('/<int:meal_id>/print')
 def print_recipe(meal_id):
