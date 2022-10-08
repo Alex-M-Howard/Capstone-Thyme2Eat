@@ -147,7 +147,7 @@ def get_similar_recipes(meal_id):
     
     if meal:
         similar = get_recipe(meal[0]['id'])
-        return similar
+        return None if similar['id'] == meal_id else similar
     else:
         return None
 
