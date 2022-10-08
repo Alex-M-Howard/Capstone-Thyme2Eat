@@ -1,4 +1,3 @@
-
 /*************************************
  *
  *  Add event listener for meal type tabs
@@ -53,7 +52,14 @@ const getFavorites = async (event, mealType) => {
 const showFavoriteMeal = (meals, mealType) => {
   for (let meal of meals) {
     
-    if (meal.meal_type.includes(mealType)) {
+    if (
+      meal.meal_type.includes(mealType) ||
+      (mealType === "Uncategorized" &&
+        !meal.meal_type.includes('snack') &&
+        !meal.meal_type.includes('breakfast') &&
+        !meal.meal_type.includes('lunch') &&
+        !meal.meal_type.includes('side'))
+    ) {
       let div = $("<div>").addClass(
         "column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet"
       ).html(`
@@ -77,10 +83,10 @@ const showFavoriteMeal = (meals, mealType) => {
 
       $("div.card-header-title:last").html(
         $("div.card-header-title:last").html() +
-        `<a id="remove-button" class="buttons is-align-content-flex-end"><i class="fa-solid fa-heart" data-meal_id=${meal.id}></i><a>`
+          `<a id="remove-button" class="buttons is-align-content-flex-end"><i class="fa-solid fa-heart" data-meal_id=${meal.id}></i><a>`
       );
     }
-  }
+  } 
 };
 
 
