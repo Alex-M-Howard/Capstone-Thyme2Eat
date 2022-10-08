@@ -154,23 +154,3 @@ def get_favorites(user_id):
     meals = retrieve_user_saved_meals(user_id)
         
     return jsonify(meals), 200
-
-@app_user.route('/<int:user_id>/remove_favorite/<int:meal_id>', methods=['DELETE'])
-def remove_from_favorites(user_id, meal_id):
-    """Remove a recipe from user's DB"""
-    
-    remove_saved_recipe(user_id, meal_id)
-    
-    return jsonify({'result': 'deleted'}), 200
-
-@app_user.route('/register_user', methods=["GET"])
-def register_user_api():
-    """Connect user to Spoonacular API"""
-
-    try:
-        connect_user_to_api()
-        return jsonify({'result': 'success'}), 201
-    except Exception as err:
-        print(err)
-        return jsonify({'result': 'failed'}), 400
-    

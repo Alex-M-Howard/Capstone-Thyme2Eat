@@ -28,33 +28,4 @@ def get_random_joke():
     
     return random.choice(jokes)
 
-def remove_saved_recipe(user_id, meal_id):
-    """Remove recipe from user's DB"""
     
-    saved = Favorite.query.filter_by(user_id=user_id, meal_id=meal_id).one()
-    
-    db.session.delete(saved)
-    db.session.commit()
-    
-def connect_user_to_api():
-    """Register user in Spoonacular API"""
-    
-    user = User.query.get(g.user.id)
-    
-    params = {
-        "apiKey": SPOONACULAR_API_KEY,
-        "username" : user.username,
-        "email": user.email
-    }
-    print(user)
-    response = requests.post(REGISTER_USER_API, params)
-    print(response)
-    response = response.json()
-    print(response)
-    user.api_username = response[0]["username"]
-    user.api_password = response[0]["hash"]
-    
-    db.session.add(user)
-    db.session.commit() 
-    
-    return user
