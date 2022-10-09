@@ -15,3 +15,16 @@ $(document).ready(function () {
     $(".navbar-menu").toggleClass("is-active");
   });
 });
+
+
+/*************************************
+ * 
+ * Clicking magnifying glass to expand search box
+ * 
+ */
+$('#search-icon').on("click", () => {
+  $("#search-box").animate({
+    width: "toggle",
+    opacity: "toggle"
+  }, 450);
+})
