@@ -1,14 +1,10 @@
 #logo{
-  width: 50%;
-  height: auto;
+  width: 87px;
+  height: 53px;
   align-self: center;
   border-radius: 100%;
 }
 
-.logo{
-  display: flex;
-  justify-content: center;
-}
 
 body{
   height:100vh;
@@ -25,4 +21,26 @@ body{
     size: A4;
     size: portrait;
   }
+}
+
+.navbar{
+  background-color:#84f19a;
+}
+
+.button{
+  color: #000;
+  background-color: #84f19a;
+}
+
+#search-box{
+  display: none;
+  height: 2.25rem;
+}
+
+.navbar-link.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, a.navbar-item.is-active, a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover{
+  color: #108d29
+}
+
+.navbar-item{
+  color: #000;
 }
