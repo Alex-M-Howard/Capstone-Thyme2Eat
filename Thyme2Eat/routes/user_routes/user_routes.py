@@ -21,7 +21,7 @@ app_user = Blueprint(
     'app_user',
     __name__,
     static_folder='../../static',
-    template_folder='templates',
+    template_folder='../../templates/user',
     url_prefix='/user'
     )
 

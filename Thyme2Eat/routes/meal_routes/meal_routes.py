@@ -11,7 +11,7 @@ app_meal = Blueprint(
     'app_meal',
     __name__,
     static_folder='../../static',
-    template_folder='templates',
+    template_folder='../../templates/meals',
     url_prefix='/meals'
     )
 
