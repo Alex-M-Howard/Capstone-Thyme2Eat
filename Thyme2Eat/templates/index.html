@@ -16,38 +16,40 @@
     <link rel="stylesheet" href="../static/css/app.css" />
   </head>
   <body>
-    <nav class="navbar is-info" role="navigation" aria-label="main-navigation">
+    <nav class="navbar" role="navigation" aria-label="main-navigation">
       <div class="navbar-brand">
+        <img src="../static/images/logo.png" alt="Logo" id="logo">
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
           </div>
-      <div class="navbar-menu">
-     
+          
+      <div class="navbar-menu">    
         <div class="navbar-end">
               
           
-          <a class="navbar-item" href="{{ url_for('app_user.home') }}">Home</a>
-          
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">Meals</a>
+          <div class="navbar-item">
+          <form action="{{ url_for('app_meal.search') }}" method="GET" id="search-box">
+                <input  type="text" class="input navbar-item" name="query" placeholder="Search">
+                <button type="submit" style="visibility: hidden;">submit</button>
+          </form>
+          </div>
 
-            <div class="navbar-dropdown is-right">
+          
+              <a href="#" class="mt-2"><i id="search-icon" class="navbar-item fa-solid fa-magnifying-glass"></i></a>
+            
               <a class="navbar-item" href="{{ url_for('app_meal.get_random_meal') }}">Generate Random Meal</a>
 
               {% if g.user %}
               <a class="navbar-item" href="{{ url_for('app_user.show_favorites', user_id=g.user.id) }}">My Recipes</a>
               {% endif %}
 
-              <form action="{{ url_for('app_meal.search') }}" method="GET">
-                <input type="text" class="input navbar-item" name="query" placeholder="Search">
-                <button type="submit" style="visibility: hidden;">submit</button>
-              </form>
+              
             
-            </div>
-          </div>
+            
+
           
           
           {% if not g.user%}
@@ -55,8 +57,8 @@
           {% else %}
             <a href="{{ url_for('app_user.logout_user') }}" class="navbar-item">Logout</a>
           {% endif %}
-        </div>
-      </div>
+          </div>
+      </div>        
     </nav>
 
     
