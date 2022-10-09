@@ -10,32 +10,17 @@
 # DONE - When sign out -> Redirect to login page
 # DONE - Add search box to navbar
 # DONE - When looking at a recipe, see similar
+# DONE - If similar meal, won't show on view recipe
+# DONE - How to save an array to DB to grab in
+# DONE -> If no meal during a tab, show NO meals
+# DONE -> If no category for meal, show another tab
 
 
 # TODO - If saving recipe fails, have icon turn back to correct state
 # TODO - User profile: Meal Plan, Favorites
-                                        
-# TODO - User logged in api route
+# TODO -> Add notes to recipes
 
 
-# TODO - How to save an array to DB to grab instructions for saved meal instead of block of text
-# Ran out of points very quickly today. Need to figure out point values for each endpoint I have
-# Complex search is the reason why --> limit search results
+# TODO -> Disable heart button while it is working with database
 
 
-
-# Added in since last week
-'''
- Font awesome
- Favorites Page with tabs
- Split JS further to match pages
- Can favorite/unfavorite recipes now
- Print Page version of recipe
- Removed brunch - added snacks
- Flash notifications on signup/login/logout pages
- Search function
- Similar recipe when viewing
- Currently trying to add in meal plan
- 
-
-'''
