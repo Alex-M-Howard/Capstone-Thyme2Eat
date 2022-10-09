@@ -37,7 +37,7 @@ const getFavorites = async (event, mealType) => {
   let meals = await getUserFavorites();
 
   showFavoriteMeal(meals, mealType);
-  checkIfNoMeals(); ////////////////////////////////////////////////////////////////////////////////////////////ADDDDDDDD
+  checkIfNoMeals(); 
   addRemoveListener(mealType);
 };
 
@@ -133,6 +133,12 @@ const removeSavedRecipe = async (mealId) => {
 
 }
 
+
+/**
+ * 
+ * If no meals, notify the user
+ * 
+ */
 const checkIfNoMeals = () => {
   if (!$("#results").html()) {
     $("#results")
