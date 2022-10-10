@@ -14,7 +14,6 @@ from .forms import SignupForm, LoginForm
 
 
 
-
 CURRENT_USER_ID = 'current_user_id'
 
 app_user = Blueprint(
@@ -61,7 +60,7 @@ def signup_page():
             return render_template('/sign_up.html', form=form)
 
         do_login(user)    
-        return redirect(url_for('app_user.home'))
+        return redirect(url_for('app_user.show_favorites', user_id=user.id))
 
     else:
         return render_template('/sign_up.html', form=form)
@@ -84,7 +83,7 @@ def login_page():
         if user:
             do_login(user)
             flash(f"Hello, {user.username}!", "success")
-            return redirect(url_for('app_user.home'))
+            return redirect(url_for('app_user.show_favorites', user_id=user.id))
         else:
             flash("Invalid Credentials.", "danger")
             
