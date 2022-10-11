@@ -36,7 +36,7 @@ def signup_page():
     """ Show sign up form - Validate and create user upon success - Reject and redo on failure """
 
     if CURRENT_USER_ID in session:
-        return redirect(url_for('app_user.show_profile', user_id=session[CURRENT_USER_ID]))
+        return redirect(url_for('app_user.home'))
 
     form = SignupForm()
 
@@ -60,7 +60,7 @@ def signup_page():
             return render_template('/sign_up.html', form=form)
 
         do_login(user)    
-        return redirect(url_for('app_user.show_favorites', user_id=user.id))
+        return redirect(url_for('app_user.home'))
 
     else:
         return render_template('/sign_up.html', form=form)
@@ -70,7 +70,7 @@ def login_page():
     """ Show login form """
 
     if CURRENT_USER_ID in session:
-        return redirect(url_for('app_user.show_profile', user_id=session[CURRENT_USER_ID]))
+        return redirect(url_for('app_user.home'))
     
     form = LoginForm()
     
@@ -83,7 +83,7 @@ def login_page():
         if user:
             do_login(user)
             flash(f"Hello, {user.username}!", "success")
-            return redirect(url_for('app_user.show_favorites', user_id=user.id))
+            return redirect(url_for('app_user.home'))
         else:
             flash("Invalid Credentials.", "danger")
             
@@ -108,6 +108,8 @@ def do_logout():
     
     if CURRENT_USER_ID in session:
         del session[CURRENT_USER_ID]
+        
+    g.user = None
 
 # Give user object to user & meal routes
 @app_user.before_request
@@ -130,13 +132,12 @@ def add_user_globally():
 
 @app_user.route('/')
 def home():
-    """ Show Logo if not logged in, otherwise User profile"""
-    return render_template('/home.html')   
-               
-@app_user.route('/<int:user_id>/profile')
-def show_profile(user_id):
+    """ Show Login if not logged in, otherwise User favorites"""
     
-    return render_template('/profile.html')
+    if g.user:
+        return redirect(url_for('app_user.show_favorites', user_id=g.user.id))
+    else:
+        return redirect(url_for('app_user.login_page'))   
                
 @app_user.route('/<int:user_id>/favorites')
 def show_favorites(user_id):
