@@ -18,8 +18,12 @@
   <body>
     <nav class="navbar" role="navigation" aria-label="main-navigation">
       <div class="navbar-brand">
+        {% if g.user %}
+        <a href="{{url_for('app_user.show_favorites', user_id=g.user.id)}}"><img src="../static/images/logo.png" alt="Logo" id="logo"></a>
+        {% else %}
         <img src="../static/images/logo.png" alt="Logo" id="logo">
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        {% endif %}
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
