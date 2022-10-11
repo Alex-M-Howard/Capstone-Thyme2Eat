@@ -21,7 +21,7 @@ def create_app():
     app = Flask(__name__)
     
     # Configure Setup
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///thyme2eat"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') #"postgresql:///thyme2eat"
     
     # Windows Database URI
     #app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://Alex:273gyuec32@localhost:5432/thyme2eat"
