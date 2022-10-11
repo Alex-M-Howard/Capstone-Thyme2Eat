@@ -18,9 +18,14 @@
 
 # TODO - If saving recipe fails, have icon turn back to correct state
 # TODO - User profile: Meal Plan, Favorites
-# TODO -> Add notes to recipes
+# TODO -> Add notes to recipes? Would have to add to favorites table
 
 
 # TODO -> Disable heart button while it is working with database
 
+# TODO -> Install gunicorn
+#https://docs.gunicorn.org/en/stable/install.html
 
+# TODO -> Work on deploying app to railway
+# TODO -> Create Documentation
+# TODO -> Add testing for everything
