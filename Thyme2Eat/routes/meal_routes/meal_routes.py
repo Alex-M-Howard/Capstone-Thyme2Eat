@@ -73,5 +73,5 @@ def search():
     
     query = request.args["query"]
     search_results = search_meals(query)
-      
-    return render_template('search.html', search_results=search_results)
+    
+    return render_template('search.html', search_results=search_results, query=query)
