@@ -28,13 +28,13 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     
     # TODO Create environment variable for secret key when Done
-    app.config["SECRET_KEY"] = "SECRET"
+    app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY') #"SECRET"
     
     # Connect to DB
     connect_to_db(app)
-    # db.drop_all()
-    # db.create_all()
-    # seed()
+    db.drop_all()
+    db.create_all()
+    seed()
     
     # Register routing blueprints
     app.register_blueprint(app_user)
