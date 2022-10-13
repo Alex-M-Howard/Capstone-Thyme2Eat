@@ -20,7 +20,7 @@
 <div class="columns is-centered is-vcentered" style="height: 70vh;">
   <div class="column is-one-third-desktop is-full-mobile is-two-thirds-tablet">
     <h1 class="is-size-3 has-text-centered">Welcome!</h1>
-    <form action="{{ url_for('app_user.signup_page') }}" method="POST" class="box">
+    <form action="{{ url_for('app_user.signup_page') }}" method="POST" class="box mt-2">
        {{ form.hidden_tag() }}   
       {% for field in form
                 if field.widget.input_type != 'hidden' %}
