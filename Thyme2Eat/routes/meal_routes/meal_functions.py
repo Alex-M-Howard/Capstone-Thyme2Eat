@@ -12,7 +12,7 @@ from ...models.favorites_model import Favorite
 import requests
 
 
-SPOONACULAR_API_KEY = os.environ.get('API_KEY') #'25bf790109054f9387a17986d94ebcfb'#'1970c7ca2a3543389708d99f3a67d353' 
+SPOONACULAR_API_KEY = os.environ.get('API_KEY') 
 RECIPES_API = 'https://api.spoonacular.com/recipes'
 
 # Searching the API
@@ -120,7 +120,6 @@ def remove_meal_from_favorites(meal_id):
     
     return
         
-
 def search_meals(query):
     """Find meals based on user input"""
     

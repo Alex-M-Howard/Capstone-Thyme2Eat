@@ -21,20 +21,12 @@ def create_app():
     app = Flask(__name__)
     
     # Configure Setup
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') #"postgresql:///thyme2eat"
-    
-    # Windows Database URI
-    #app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://Alex:273gyuec32@localhost:5432/thyme2eat"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL') 
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    
-    # TODO Create environment variable for secret key when Done
-    app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY') #"SECRET"
+    app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY')
     
     # Connect to DB
     connect_to_db(app)
-    #db.drop_all()
-    #db.create_all()
-    #seed()
     
     # Register routing blueprints
     app.register_blueprint(app_user)
