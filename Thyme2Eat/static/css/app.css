@@ -58,3 +58,7 @@ body{
 .input, .select select, .textarea {
   border-color: #aaa7a7;
 }
+
+.notification.is-success.is-light {
+  background-color: #84f19a;
+}

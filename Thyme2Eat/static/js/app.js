@@ -28,3 +28,24 @@ $('#search-icon').on("click", () => {
     opacity: "toggle"
   }, 450);
 })
+
+
+/******************************************
+ * 
+ *  Hide flashed messages after short delay
+ * 
+ */
+
+if ($("#flashed")) {
+  const timer = setTimeout(() => {
+   $("#flashed").animate(
+     {
+       right: "-2000px",
+     },
+     1600
+   );
+    
+ }, 2500)
+  
+  x
+}

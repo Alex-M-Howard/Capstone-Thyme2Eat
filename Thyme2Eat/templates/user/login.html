@@ -5,20 +5,25 @@
 {% block content %}
 
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-  
-    <ul class='flashes'>
-    {% for category, message in messages %}
-  
-  <div class="notification is-{{category}} is-light">
-    <li class={{category}}>{{ message }}</li>
-    </div>
-    {% endfor %}
-    </ul>
+
+<div class="columns mt-3">
+  <div class="column is-8"></div>
+  <div class="column is-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      
+        <ul class='flashes'>
+        {% for category, message in messages %}
+      <div class="notification is-{{category}} " id="flashed">
+        <li>{{ message }}</li>
+        </div>
+        {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    {% endwith %}
   </div>
-  {% endif %}
-{% endwith %}
+</div>
 
 
 <div class="columns is-centered is-vcentered" style="height: 70vh;">
