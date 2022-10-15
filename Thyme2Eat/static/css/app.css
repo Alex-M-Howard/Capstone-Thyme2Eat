@@ -62,3 +62,10 @@ body{
 .notification.is-success.is-light {
   background-color: #84f19a;
 }
+
+#error-box{
+  /* Trying to achieve the danger look of the alert boxes */
+  background-color: hsl(348, 100%, 61%); 
+  color: #FFF;
+  font-weight: bolder;
+}

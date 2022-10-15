@@ -1,5 +1,3 @@
-NUMBER_OF_RANDOM_RESULTS = 12;
-
 /*************************************
  *
  *  Add event listener for search button
@@ -106,9 +104,13 @@ const showMeals = (meals) => {
  *  Call USER route to Save/Remove Meal
  *
  */
+let inProgress = false;
+
 const saveRecipeEvent = () => {
   $(".buttons").on("click", async (event) => {
     event.preventDefault();
+
+    if (inProgress) { return; }
     
     if ($(event.target).is("a")) {
       event.target = $(event.target).children("i");
@@ -117,21 +119,55 @@ const saveRecipeEvent = () => {
     
     let mealId = $(event.target).data("meal_id");
 
-    try {
-      if ($(event.target).hasClass("fa-solid")) {
+    
+    if ($(event.target).hasClass("fa-solid")) {
+      inProgress = true;
         const responsePromise = axios.delete(`/meals/${mealId}/remove`);
-      } else {
-        const responsePromise = axios.post(`/meals/${mealId}/save`);
+      responsePromise
+        .then(
+          (onFulfilled) => {
+            changeButton($(event.target));
+          },
+          (onFailure) => {
+            $("error").toggleClass("is-active")
+            const timer = setTimeout(() => {
+              $("error").toggleClass("is-active");
+            }, 1500)
+          })
+        .finally(() => {
+            inProgress = false;
+        })
+      
+    }
+    else {
+      inProgress = true;
+      const responsePromise = axios.post(`/meals/${mealId}/save`);
+      responsePromise
+        .then(
+          (onFulfilled) => {
+            changeButton($(event.target));
+          },
+          (onFailure) => {
+            $("error").toggleClass("is-active");
+            const timer = setTimeout(() => {
+              $("error").toggleClass("is-active");
+            }, 1500);
+          }
+        )
+        .finally(() => {
+          inProgress = false;
+        })
       }  
       
-    } catch (error) {
-      console.log(`Error: ${error}`);
-      window.alert('There was an error... Please try again later')
-      return;
-    }
-    changeButton($(event.target));
+    
+        
+    
+    
   });
 };
+
+
+
 
 /*************************************
  *

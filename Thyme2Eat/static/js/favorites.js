@@ -111,28 +111,35 @@ const getUserFavorites = async () => {
  *  Call getFavorites function
  * 
  */
+let inProgress = false;
+
 const addRemoveListener = (mealType) => {
 $(".buttons").on("click", async (event) => {
   event.preventDefault();
+  
+  if (inProgress) { return; }
 
   let mealId = $(event.target).data("meal_id");
-  
-  removeSavedRecipe(mealId);
-  $(event.target).closest('.column').remove();
-  checkIfNoMeals();
+  const responsePromise = axios.delete(`/meals/${mealId}/remove`);
+
+  responsePromise
+    .then(
+      (onFulfilled) => {
+        $(event.target).closest(".column").remove();
+        checkIfNoMeals();
+      },
+      (onFailure) => {
+        $("error").toggleClass("is-active");
+        const timer = setTimeout(() => {
+          $("error").toggleClass("is-active");
+        }, 1500);
+      }
+    )
+    .finally(() => {
+      inProgress = false;
+    });
 });  
 }
-
-/**
- * 
- * Remove a favorite from User's Profile
- * 
- */
-const removeSavedRecipe = async (mealId) => {
-  const responsePromise = axios.delete(`/meals/${mealId}/remove`)
-
-}
-
 
 /**
  * 
