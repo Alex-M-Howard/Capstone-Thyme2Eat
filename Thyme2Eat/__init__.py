@@ -27,6 +27,7 @@ def create_app():
     
     # Connect to DB
     connect_to_db(app)
+    seed()
     
     # Register routing blueprints
     app.register_blueprint(app_user)

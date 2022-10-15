@@ -15,7 +15,7 @@ class Favorite(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='cascade'))
 
-    meal_id = db.Column(db.Integer, db.ForeignKey('meals.id', ondelete='cascade'), unique=True)
+    meal_id = db.Column(db.Integer, db.ForeignKey('meals.id', ondelete='cascade'))
 
 
     def __repr__(self):
