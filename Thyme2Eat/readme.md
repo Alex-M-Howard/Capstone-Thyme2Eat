@@ -1,24 +1,69 @@
-# Clone Project 
-git clone https://github.com/Alex-M-Howard/Capstone-Thyme2Eat.git
-cd Capstone-Thyme2Eat
+# Capstone 1 - Thyme2Eat
+Skip right to the project --> [Thyme2Eat](https://thyme2eat.up.railway.app)
+<hr>
 
-# Install venv and activate 
-python3 -m venv venv
-source venv/bin/activate
 
-# Install requirements
-pip install -r requirements.txt
+#### Installing Project
+1. Clone Repository
+2. Create Virtual Environment
+3. Install Requirements
+4. Seed Database
+5. Run Flask
 
-# Create Database - Using PostgreSQL
-creatdb thyme2eat
+<br>
+##### --- Clone Repository ---
+Clone repository to your workspace:
 
-# Run app
-flask --app Thyme2Eat run
+`git clone https://github.com/Alex-M-Howard/Capstone-Thyme2Eat.git`
+`cd Capstone-Thyme2Eat`
 
-# Navigate to localhost in Browser
-In the browser go to 127.0.0.1:5000/
- 
-# Sign Up
+<br>
 
-# Get Meals
+##### --- Create Virtual Environment ---
+Create virtual environment:
+
+`python -m venv venv`
+<br>
+
+##### --- Install Requirements ---
+Activate you virtual environment and then use pip to install required pacakges:
+
+`pip install -r requirements.txt`
+<br>
+
+##### --- Seed Database | PostgreSQL ---
+Run the seed.py file to create the database and add starting data:
+
+`python seed.py`
+
+<br>
+
+##### --- Run Flask ---
+Next, start the Flask server:
+
+`flask ---app Thyme2Eat run`
+
+Now in your broswer, navigate to your local host to see the app!
+
+<hr>
+
+#### Routes 
+##### Sign Up
+If it is your first time here, click on Sign Up and create an account, otherwise login! You can also view randomly generated meals without being logged in, just use the navbar.
+<br>
+
+##### Get Random Meals
+Using the filters of your choice, get random meals that you can view. Click on their picture or title to see the full recipe. If you're logged in, you can click the heart icon to save the recipe to "Your Recipes" and view them anytime you want. 
+<br>
+
+##### My Recipes
+When logged in, you will be directed to your saved meals which can be filtered by: Breakfast|Brunch, Snacks, Sides, Lunch|Dinner, and Uncategorized. To remove a recipe, click on the heart icon.
+<br>
+
+##### Search Recipes
+If you have an idea what you want to find, click on the magnifying glass on the navbar and search for a meal!
+<br>
+
+##### Viewing Recipe
+You can see the servings, time to cook, ingredients list, instructions, and also the nutrition facts. If you'd like to print this to keep in your own cookbook, click the printer icon to be directed to a printable page of your chosen recipe! If this recipe is not quite cutting it, there might be a similar recipe that has just the tweak it needs at the bottom of the page!
 
