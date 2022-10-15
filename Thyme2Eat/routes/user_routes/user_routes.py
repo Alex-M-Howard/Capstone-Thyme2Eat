@@ -59,7 +59,8 @@ def signup_page():
             print(err)
             return render_template('/sign_up.html', form=form)
 
-        do_login(user)    
+        do_login(user)
+        flash('Welcome! Search for a meal or try our random meal generator!', "success")    
         return redirect(url_for('app_user.home'))
 
     else:
