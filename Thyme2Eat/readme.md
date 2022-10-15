@@ -2,6 +2,26 @@
 Skip right to the project --> [Thyme2Eat](https://thyme2eat.up.railway.app)
 <hr>
 
+#### Tech Used
+**Database**
+* [PostgreSQL](https://www.postgresql.org/)
+<br>
+
+**Front End (HTML, CSS, JS)**
+* [jQuery](https://api.jquery.com/)
+* [Axios](https://axios-http.com/)
+* [Bulma](https://bulma.io) 
+* [FontAwesome](https://fontawesome.com/)
+
+<br>
+
+**Back End (Python)**
+* [Flask](https://flask.palletsprojects.com/en/2.2.x/)
+* [SQL-Alchemy](https://flask-sqlalchemy.palletsprojects.com/)
+* [WTForms](https://wtforms.readthedocs.io/en/3.0.x/)
+* [Bcrypt](https://github.com/pyca/bcrypt/)
+
+<hr>
 
 #### Installing Project
 1. Clone Repository
