@@ -108,6 +108,7 @@ let inProgress = false;
 
 const saveRecipeEvent = () => {
   $(".buttons").on("click", async (event) => {
+    console.log('clicked');
     event.preventDefault();
 
     if (inProgress) { return; }
@@ -166,9 +167,6 @@ const saveRecipeEvent = () => {
   });
 };
 
-
-
-
 /*************************************
  *
  *  Change button text on randomly
@@ -180,3 +178,6 @@ const changeButton = (button) => {
     $(button).toggleClass("fa-solid fa-heart");
     $(button).toggleClass("fa-regular fa-heart");    
 };
+
+//Added below for show_recipe to favorite/unfavorite meals
+saveRecipeEvent();

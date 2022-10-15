@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, flash, redirect, request, url_for, g, jsonify
+from flask import Blueprint, render_template, request, g, jsonify
 from sqlalchemy.exc import IntegrityError
 
 from ...models.meal_model import Meal
 from ...models.user_model import User
+
+from ..user_routes.user_functions import retrieve_user_saved_meals
 
 from .meal_functions import *
 
@@ -35,8 +37,21 @@ def show_recipe(meal_id):
         nutrition = recipe.nutrition_url
     
     similar = get_similar_recipes(meal_id)
+
+    with db.session.no_autoflush:
+        favorites = retrieve_user_saved_meals(g.user.id) if g.user else None
     
-    return render_template('show_recipe.html', recipe=recipe, nutrition=nutrition, similar=similar)
+        if favorites:
+            ids = [meal['id'] for meal in favorites]
+            saved = True if meal_id in ids else False
+            
+            if similar:
+                savedSimilar = True if similar['id'] in ids else False
+        else:
+            saved = False
+            savedSimilar = False
+        
+    return render_template('show_recipe.html', recipe=recipe, nutrition=nutrition, similar=similar, saved=saved, savedSimilar=savedSimilar)
     
 @app_meal.route('/<int:meal_id>/save', methods=["POST"])
 def save_recipe(meal_id):
