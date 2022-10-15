@@ -117,14 +117,16 @@ const saveRecipeEvent = () => {
     
     let mealId = $(event.target).data("meal_id");
 
-    if ($(event.target).hasClass("fa-solid")) {
-      const responsePromise = axios.delete(`/meals/${mealId}/remove`)
-    } else {
-      const responsePromise = axios.post(`/meals/${mealId}/save`);
+    try {
+      if ($(event.target).hasClass("fa-solid")) {
+        const responsePromise = axios.delete(`/meals/${mealId}/remove`);
+      } else {
+        const responsePromise = axios.post(`/meals/${mealId}/save`);
+      }  
+      changeButton($(event.target));
+    } catch (error) {
+      console.log(`Error: ${error}`);
     }
-
-    changeButton($(event.target));
-    
 
   });
 };
