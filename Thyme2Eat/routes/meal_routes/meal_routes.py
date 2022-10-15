@@ -18,7 +18,7 @@ app_meal = Blueprint(
 
 @app_meal.route('/random', methods=["GET"])
 def get_random_meal():
-    """ Show HTML for random meal. AJAX will run API request """
+    """ Show HTML for random meal """
     
     return render_template('random_meal.html')
       
@@ -75,3 +75,16 @@ def search():
     search_results = search_meals(query)
     
     return render_template('search.html', search_results=search_results, query=query)
+
+@app_meal.route('/random/recipes', methods=["GET"])
+def get_recipes_api():
+    """Retrieve list of recipes from API"""
+    
+    diet = request.args["diet"]
+    intolerances = request.args["intolerances"]
+    type = request.args["type"]
+    sort = "random"
+        
+    search_results = search_meals(diet=diet, intolerances=intolerances, type=type, sort=sort)
+    
+    return search_results

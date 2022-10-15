@@ -21,7 +21,7 @@ $("#random-meal-search").on("click", async (event) => {
 /*************************************
  *
  *  getRandomMeals
- *  Axios.get API Request for Random Meals   --> /complexSearch
+ *  Axios.get for Random Meals 
  *  Returns an array of objects
  *
  */
@@ -29,22 +29,14 @@ const getRandomMeals = async () => {
   let diet = $("#diet").val();
   let type = $("#type").val();
   let intolerances = $("#intolerances").val();
-  let apiKey = SPOONACULAR_API_KEY;
-  let number = NUMBER_OF_RANDOM_RESULTS;
-  let sort = "random";
-  let instructionsRequired = "true";
 
   let params = {
-    apiKey,
     diet,
     intolerances,
     type,
-    number,
-    sort,
-    instructionsRequired,
   };
 
-  const response = await axios.get(`${BASE_RECIPES_URL}/complexSearch`, {
+  const response = await axios.get(`/meals/random/recipes`, {
     params,
   });
 

@@ -1,7 +1,3 @@
-SPOONACULAR_API_KEY = "25bf790109054f9387a17986d94ebcfb";//"1970c7ca2a3543389708d99f3a67d353";//
-BASE_RECIPES_URL = "https://api.spoonacular.com/recipes";
-
-
 /*************************************
  *  
  *  Functionality for nav-bar Hamburger button
@@ -46,6 +42,4 @@ if ($("#flashed")) {
    );
     
  }, 2500)
-  
-  x
 }

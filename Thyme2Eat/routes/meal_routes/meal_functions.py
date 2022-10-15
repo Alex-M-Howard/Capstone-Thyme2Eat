@@ -120,13 +120,18 @@ def remove_meal_from_favorites(meal_id):
     
     return
         
-def search_meals(query):
+def search_meals(query="", diet="", intolerances="", type="", number=12, sort="", instructionsRequired="true"):
     """Find meals based on user input"""
     
     params = {
         "apiKey": SPOONACULAR_API_KEY,
         "query": query,
-        "number": 8
+        "number": number,
+        "diet": diet,
+        "intolerances": intolerances,
+        "type": type,
+        "sort": sort,
+        "instructionsRequired": instructionsRequired
     }
     
     results = requests.get(f"{RECIPES_API}/{COMPLEX_SEARCH}", params)
