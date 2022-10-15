@@ -19,7 +19,7 @@ class Meal(db.Model):
 
     __tablename__ = 'meals'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, unique=True, primary_key=True)
     title = db.Column(db.Text, nullable=False)
     image = db.Column(db.Text)
     servings = db.Column(db.Integer, nullable=False)
