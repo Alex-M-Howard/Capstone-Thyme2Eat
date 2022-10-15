@@ -123,11 +123,13 @@ const saveRecipeEvent = () => {
       } else {
         const responsePromise = axios.post(`/meals/${mealId}/save`);
       }  
-      changeButton($(event.target));
+      
     } catch (error) {
       console.log(`Error: ${error}`);
+      window.alert('There was an error... Please try again later')
+      return;
     }
-
+    changeButton($(event.target));
   });
 };
 
