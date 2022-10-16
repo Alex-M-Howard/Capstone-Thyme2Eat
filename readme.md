@@ -31,6 +31,7 @@ Skip right to the project --> [Thyme2Eat](https://thyme2eat.up.railway.app)
 5. Run Flask
 
 <br>
+
 #### --- Clone Repository ---
 Clone repository to your workspace:
 
@@ -43,12 +44,14 @@ Clone repository to your workspace:
 Create virtual environment:
 
 `python -m venv venv`
+
 <br>
 
 #### --- Install Requirements ---
 Activate you virtual environment and then use pip to install required pacakges:
 
 `pip install -r requirements.txt`
+
 <br>
 
 #### --- Seed Database | PostgreSQL ---
@@ -70,18 +73,22 @@ Now in your broswer, navigate to your local host to see the app!
 ### Routes 
 #### Sign Up
 If it is your first time here, click on Sign Up and create an account, otherwise login! You can also view randomly generated meals without being logged in, just use the navbar.
+
 <br>
 
 #### Get Random Meals
 Using the filters of your choice, get random meals that you can view. Click on their picture or title to see the full recipe. If you're logged in, you can click the heart icon to save the recipe to "Your Recipes" and view them anytime you want. 
+
 <br>
 
 #### My Recipes
 When logged in, you will be directed to your saved meals which can be filtered by: Breakfast|Brunch, Snacks, Sides, Lunch|Dinner, and Uncategorized. To remove a recipe, click on the heart icon.
+
 <br>
 
 #### Search Recipes
 If you have an idea what you want to find, click on the magnifying glass on the navbar and search for a meal!
+
 <br>
 
 #### Viewing Recipe
@@ -89,7 +96,9 @@ You can see the servings, time to cook, ingredients list, instructions, and also
 
 
 <br>
+
 <br>
+
 <hr>
 
 ### Lessons Learned
