@@ -27,7 +27,7 @@ Skip right to the project --> [Thyme2Eat](https://thyme2eat.up.railway.app)
 1. Clone Repository
 2. Create Virtual Environment
 3. Install Requirements
-4. Seed Database
+4. Create/Seed Database
 5. Run Flask
 
 <br>
@@ -52,9 +52,9 @@ Activate you virtual environment and then use pip to install required pacakges:
 <br>
 
 ##### --- Seed Database | PostgreSQL ---
-Run the seed.py file to create the database and add starting data:
+Seed database:
 
-`python seed.py`
+`psql < seed.SQL'
 
 <br>
 

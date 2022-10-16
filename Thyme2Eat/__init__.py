@@ -12,7 +12,6 @@ from .models.favorites_model import Favorite
 
 from .db import connect_to_db, db
 
-from .thyme_seed import seed
 
 CURRENT_USER_ID = 'current_user'
 
