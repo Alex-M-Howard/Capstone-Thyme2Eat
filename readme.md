@@ -54,7 +54,7 @@ Activate you virtual environment and then use pip to install required pacakges:
 ##### --- Seed Database | PostgreSQL ---
 Seed database:
 
-`psql < seed.SQL'
+`psql < seed.SQL`
 
 <br>
 
@@ -86,4 +86,23 @@ If you have an idea what you want to find, click on the magnifying glass on the 
 
 ##### Viewing Recipe
 You can see the servings, time to cook, ingredients list, instructions, and also the nutrition facts. If you'd like to print this to keep in your own cookbook, click the printer icon to be directed to a printable page of your chosen recipe! If this recipe is not quite cutting it, there might be a similar recipe that has just the tweak it needs at the bottom of the page!
+
+
+<br>
+<br>
+<hr>
+#### Lessons Learned
+
+##### API Selection
+Using this API and feeling the full effects of being in the free tier is something I will not underestimate in future projects. Having a limited quota was very limiting.
+
+<br>
+
+##### Project Scope
+It is easy to envision what you want in a project, but I found out quickly that having a smaller goal that you expand later is a better plan. With bugs and other learning opportunities, going from point A to B is more work than it may seem. 
+
+<br>
+
+##### TODO List
+Having a todo list built into the code helped move the latter half of the project along more quickly. This will be key next time as it will keep me on task, rather than reaching in a barrel and pulling out a random task each time I sit down to it. 
 
