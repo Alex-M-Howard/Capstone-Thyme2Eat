@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS thyme2eat2;
-CREATE DATABASE thyme2eat2;
+DROP DATABASE IF EXISTS thyme2eat;
+CREATE DATABASE thyme2eat;
 
-\c thyme2eat2
+\c thyme2eat
 
 DROP TABLE IF EXISTS jokes;
 CREATE TABLE jokes 
