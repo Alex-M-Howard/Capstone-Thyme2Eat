@@ -1,43 +1,110 @@
-{% extends 'index.html' %} {% block title%}Sign Up for Thyme2Eat{% endblock %}
+{% extends 'index.html' %}
+
+
+
+
+{% block title%}Sign Up for Thyme2Eat{% endblock %}
+
+
+
+
 {% block content %}
 
+
+
+
+
+
+
 <div class="columns mt-3">
+
   <div class="column is-8"></div>
+
   <div class="column is-4">
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %}
 
-    <ul class="flashes">
-      {% for category, message in messages %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+      {% if messages %}
+
+      
+
+        <ul class='flashes'>
+
+        {% for category, message in messages %}
+
       <div class="notification is-{{category}} " id="flashed">
+
         <li>{{ message }}</li>
+
+        </div>
+
+        {% endfor %}
+
+        </ul>
+
       </div>
-      {% endfor %}
-    </ul>
+
+      {% endif %}
+
+    {% endwith %}
+
   </div>
-  {% endif %} {% endwith %}
+
+
 </div>
 
-<div class="columns is-centered is-vcentered" style="height: 70vh">
+
+
+
+
+
+
+<div class="columns is-centered is-vcentered" style="height: 70vh;">
+
   <div class="column is-one-third-desktop is-full-mobile is-two-thirds-tablet">
+
     <h1 class="is-size-3 has-text-centered">Welcome, let's sign up!</h1>
-    <form
-      action="{{ url_for('app_user.signup_page') }}"
-      method="POST"
-      class="box mt-2"
-    >
-      {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
-      'hidden' %}
-      <div class="field">
-        {{ field.label(class_='label') }}
-        <div class="control">{{ field(class='input') }}</div>
-      </div>
-      {% for error in field.errors %} {{ error }} {% endfor %} {% endfor %}
-      <button class="button" type="submit">Sign Up</button>
+
+    <form action="{{ url_for('app_user.signup_page') }}" method="POST" class="box mt-2">
+
+       {{ form.hidden_tag() }}   
+
+      {% for field in form
+
+                if field.widget.input_type != 'hidden' %}
+
+              <div class="field">
+
+                {{ field.label(class_='label') }}
+
+                <div class="control">
+
+                  {{ field(class='input') }}
+
+                </div>
+
+              </div>
+
+              {% for error in field.errors %}
+
+                {{ error }}
+
+              {% endfor %}
+
+            </p>
+
+          {% endfor %}
+
+        <button class="button" type="submit">Sign Up</button>
+
     </form>
-    <h1 class="has-text-centered">
-      Already a user? <a href="{{ url_for('app_user.login_page') }}">Login</a>
-    </h1>
+
+    <h1 class="has-text-centered">Already a user? <a href="{{ url_for('app_user.login_page') }}">Login</a></h1>
+
+
+
   </div>
-</div>
+
+</div>  
+
 {% endblock %}
