@@ -50,5 +50,19 @@
     </form>
     <h1 class="has-text-centered">New here? <a href="{{ url_for('app_user.signup_page') }}">Sign Up</a></h1>
   </div>
+
+  <div class="has-text-centered">
+    <h3 class="is-size-5 has-text-centered">Guest?</h3>
+    <button class="button" onclick="guestLogin()">Guest Login</button>
+  </div>
+
 </div>  
+
+<script>
+  function guestLogin() {
+    document.getElementById("username").value = "guest_user";
+    document.getElementById("password").value = "password";
+    document.getElementById("login").click();
+  }
+</script>
 {% endblock %}
