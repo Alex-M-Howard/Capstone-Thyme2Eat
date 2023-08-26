@@ -12,7 +12,7 @@ from .routes.user_routes.user_routes import app_user
 
 CURRENT_USER_ID = 'current_user'
 
-def create_app():
+def create_app(*args, **kwargs):
     # Create Flask app
     app = Flask(__name__)
     
