@@ -1,66 +1,57 @@
-{% extends 'index.html' %}
-
-{% block title%}Thyme2Eat Login{% endblock %}
-
-{% block content %}
-
-
-
+{% extends 'index.html' %} {% block title%}Thyme2Eat Login{% endblock %} {%
+block content %}
 <div class="columns mt-3">
   <div class="column is-8"></div>
   <div class="column is-4">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      
-        <ul class='flashes'>
-        {% for category, message in messages %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+
+    <ul class="flashes">
+      {% for category, message in messages %}
       <div class="notification is-{{category}} " id="flashed">
         <li>{{ message }}</li>
-        </div>
-        {% endfor %}
-        </ul>
       </div>
-      {% endif %}
-    {% endwith %}
+      {% endfor %}
+    </ul>
   </div>
+  {% endif %} {% endwith %}
 </div>
 
-
-<div class="columns is-centered is-vcentered" style="height: 70vh;">
+<div class="columns is-centered is-vcentered" style="height: 70vh">
   <div class="column is-one-third-desktop is-full-mobile is-two-thirds-tablet">
     <h1 class="is-size-3 has-text-centered">Welcome back!</h1>
     <form method="POST" class="box mt-2">
-      {{ form.hidden_tag() }}  
-        {% for field in form
-                if field.widget.input_type != 'hidden' %}
+      {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !=
+      'hidden' %}
 
-              <div class="field">
-                {{ field.label(class_='label') }}
-                <div class="control">
-                {{ field(class='input') }}
-                </div>
-              </div>
-              {% for error in field.errors %}
-                {{ error }}
-              {% endfor %}
-            </p>
-
-          {% endfor %}
-        <button class="button" type="submit" id="login">Login</button>
+      <div class="field">
+        {{ field.label(class_='label') }}
+        <div class="control">{{ field(class='input') }}</div>
+      </div>
+      {% for error in field.errors %} {{ error }} {% endfor %} {% endfor %}
+      <button class="button" type="submit" id="login">Login</button>
     </form>
-    <h1 class="has-text-centered">New here? <a href="{{ url_for('app_user.signup_page') }}">Sign Up</a></h1>
-    
+    <h1 class="has-text-centered">
+      New here? <a href="{{ url_for('app_user.signup_page') }}">Sign Up</a>
+    </h1>
+
     <div class="has-text-centered mt-5">
       <button class="button" onclick="guestLogin()">Guest Login</button>
     </div>
   </div>
-</div>  
+</div>
 
 <script>
   function guestLogin() {
-    document.getElementById("username").value = "guest_user";
-    document.getElementById("password").value = "password";
-    document.getElementById("login").click();
+    // Set the value of username and password fields
+    const usernameField = document.querySelector("#username");
+    const passwordField = document.querySelector("#password");
+    usernameField.value = "guest_user";
+    passwordField.value = "password";
+
+    // Trigger the login button click
+    const loginButton = document.querySelector("#login");
+    loginButton.click();
   }
 </script>
 {% endblock %}
