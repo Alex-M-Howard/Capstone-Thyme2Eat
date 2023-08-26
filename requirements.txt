@@ -30,3 +30,4 @@ wtf==0.1
 WTForms==3.0.1
 WTForms-Alchemy==0.18.0
 WTForms-Components==0.10.5
+gunicorn
