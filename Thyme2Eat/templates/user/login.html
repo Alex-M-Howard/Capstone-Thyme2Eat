@@ -49,13 +49,11 @@
         <button class="button" type="submit">Login</button>
     </form>
     <h1 class="has-text-centered">New here? <a href="{{ url_for('app_user.signup_page') }}">Sign Up</a></h1>
+    
+    <div class="has-text-centered mt-5">
+      <button class="button" onclick="guestLogin()">Guest Login</button>
+    </div>
   </div>
-
-  <div class="has-text-centered">
-    <h3 class="is-size-5 has-text-centered">Guest?</h3>
-    <button class="button" onclick="guestLogin()">Guest Login</button>
-  </div>
-
 </div>  
 
 <script>
