@@ -1,27 +1,29 @@
-/*************************************
- *
- *  Add event listener for search button
- *  Prevent Default Button Function
- *  Get random meals
- *  Show meals on page
- *  Add Event Listeners to SAVE buttons
- *
- */
+// Add event listener for search button
+// When the button is clicked, prevent default action, fetch random meals, display them, and set up save button events
 $("#random-meal-search").on("click", async (event) => {
   event.preventDefault();
 
+  // Fetch random meals
   let meals = await getRandomMeals();
+  
+  // Clear previous results and display fetched meals
   $("#results").empty();
   showMeals(meals);
+  
+  // Set up event listeners for saving/removing recipes
   saveRecipeEvent();
 });
 
 /*************************************
- *
- *  getRandomMeals
- *  Axios.get for Random Meals 
- *  Returns an array of objects
- *
+ * Fetch Random Meals
+ * 
+ * @returns Array - List of Random Meal Objects
+ * 
+ * Steps:
+ * - Get diet, type, and intolerances parameters from the form
+ * - Send a request to fetch random meals with the specified parameters
+ * - Return an array of meal objects
+ * 
  */
 const getRandomMeals = async () => {
   let diet = $("#diet").val();
@@ -42,20 +44,24 @@ const getRandomMeals = async () => {
 };
 
 /*************************************
- *
- *  showMeals
- *  Loop through meals
- *  Create meal cards
- *  Display on page
- *  If user is logged in, create SAVE button
- *
+ * Display Meals on Page
+ * 
+ * @param {Array - Meal Objects} meals - List of meal objects to be displayed
+ * 
+ * Steps:
+ * - Iterate through each meal
+ * - Create a meal card and append it to the results section
+ * - If the user is logged in, add appropriate save/remove button
+ * 
  */
 const showMeals = (meals) => {
   for (let meal of meals) {
+    // Create a meal card and append it to the results section
     let div = $("<div>").addClass(
       "column is-one-quarter-desktop is-one-quarter-widescreen is-one-third-tablet"
     ).html(`
           <div class="card">
+            <!-- Card image -->
             <div class="card-image">
                 <figure class="image is-4by3">
                   <a href="/meals/recipe/${meal.id}">  
@@ -64,6 +70,7 @@ const showMeals = (meals) => {
                 </figure>
             </div>
 
+            <!-- Card header -->
             <div class="card-header">
               <div class="card-header-title">
                 <div class="columns">
@@ -76,11 +83,11 @@ const showMeals = (meals) => {
             </div>
         `);
 
+    // Append the card to the results section
     $("#results").append($(div));
 
-    // If user logged in, create SAVE buttons
+    // If user is logged in, add appropriate save/remove button
     if (user !== "None") {
-      // If meal already in user favorites, Have Remove button instead
       if (user_meals.includes(meal.id)) {
         $("div.button-location:last").html(
           $("div.button-location:last").html() +
@@ -97,12 +104,15 @@ const showMeals = (meals) => {
 };
 
 /*************************************
- *
- *  Add event listener for SAVE buttons
- *  Prevent Default Button Function
- *  If anchor tag clicked on instead of heart check
- *  Call USER route to Save/Remove Meal
- *
+ * Save/Remove Button Event Listener
+ * 
+ * Steps:
+ * - Add click event listener for the save/remove button
+ * - Prevent the default button action
+ * - Identify if the target is an anchor tag and adjust accordingly
+ * - Determine the meal ID
+ * - If the button is already active, remove the meal, otherwise save it
+ * 
  */
 let inProgress = false;
 
@@ -111,19 +121,22 @@ const saveRecipeEvent = () => {
     console.log('clicked');
     event.preventDefault();
 
-    if (inProgress) { return; }
-    
+    if (inProgress) {
+      return;
+    }
+
+    // Adjust the event target if an anchor tag was clicked
     if ($(event.target).is("a")) {
       event.target = $(event.target).children("i");
     }
-    
-    
+
+    // Determine the meal ID
     let mealId = $(event.target).data("meal_id");
 
-    
+    // Handle saving or removing the meal
     if ($(event.target).hasClass("fa-solid")) {
       inProgress = true;
-        const responsePromise = axios.delete(`/meals/${mealId}/remove`);
+      const responsePromise = axios.delete(`/meals/${mealId}/remove`);
       responsePromise
         .then(
           (onFulfilled) => {
@@ -139,8 +152,7 @@ const saveRecipeEvent = () => {
             inProgress = false;
         })
       
-    }
-    else {
+    } else {
       inProgress = true;
       const responsePromise = axios.post(`/meals/${mealId}/save`);
       responsePromise
@@ -157,27 +169,24 @@ const saveRecipeEvent = () => {
         )
         .finally(() => {
           inProgress = false;
-        })
-      }  
-      
-    
-        
-    
-    
+        });
+    }
   });
 };
 
 /*************************************
- *
- *  Change button text on randomly
- *  generated meals.
- *  Save --> Remove
- *  Remove --> Save
+ * Toggle Save/Remove Button
+ * 
+ * @param {jQuery object} button - The clicked button element
+ * 
+ * Steps:
+ * - Toggle between solid and regular heart icons
+ * 
  */
 const changeButton = (button) => {
     $(button).toggleClass("fa-solid fa-heart");
     $(button).toggleClass("fa-regular fa-heart");    
 };
 
-//Added below for show_recipe to favorite/unfavorite meals
+// Set up event listeners for show_recipe to favorite/unfavorite meals
 saveRecipeEvent();

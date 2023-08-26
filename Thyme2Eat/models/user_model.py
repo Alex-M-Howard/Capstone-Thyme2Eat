@@ -1,8 +1,8 @@
-from ..db import db
+from flask_bcrypt import Bcrypt
 
+from ..db import db
 from ..models.favorites_model import Favorite
 
-from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt()
 
 

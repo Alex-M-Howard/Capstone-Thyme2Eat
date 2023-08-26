@@ -1,16 +1,13 @@
 import json
-import os 
+import os
 
+import requests
 from flask import g
 
 from ...db import db
-
+from ...models.favorites_model import Favorite
 from ...models.meal_model import Meal
 from ...models.user_model import User
-from ...models.favorites_model import Favorite
-
-import requests
-
 
 SPOONACULAR_API_KEY = os.environ.get('API_KEY') 
 RECIPES_API = 'https://api.spoonacular.com/recipes'

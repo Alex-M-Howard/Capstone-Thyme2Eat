@@ -1,11 +1,9 @@
-from flask import Blueprint, render_template, request, g, jsonify
+from flask import Blueprint, g, jsonify, render_template, request
 from sqlalchemy.exc import IntegrityError
 
 from ...models.meal_model import Meal
 from ...models.user_model import User
-
 from ..user_routes.user_functions import retrieve_user_saved_meals
-
 from .meal_functions import *
 
 # Create blueprint and custom routes

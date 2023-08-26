@@ -1,5 +1,4 @@
 from ..db import db
-
 from ..models.favorites_model import Favorite
 
 

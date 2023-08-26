@@ -1,13 +1,12 @@
-from flask import g 
 import random
+
 import requests
+from flask import g
 
-from ...db import db 
-
-from ...models.user_model import User
+from ...db import db
 from ...models.favorites_model import Favorite
 from ...models.joke_model import Joke
-
+from ...models.user_model import User
 from ..meal_routes.meal_functions import SPOONACULAR_API_KEY
 
 REGISTER_USER_API = 'https://api.spoonacular.com/users/connect'
